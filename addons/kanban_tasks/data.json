@@ -1,0 +1,86 @@
+{
+  "categories": [
+    {
+      "title": "Task",
+      "color": "6394ed"
+    },
+    {
+      "title": "Question",
+      "color": "f103f8"
+    }
+  ],
+  "columns": [
+    {
+      "stages": [
+        0
+      ]
+    },
+    {
+      "stages": [
+        1
+      ]
+    },
+    {
+      "stages": [
+        2
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "title": "Todo",
+      "tasks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "title": "Doing",
+      "tasks": [
+
+      ]
+    },
+    {
+      "title": "Done",
+      "tasks": [
+
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "category": 0,
+      "title": "Theme: DEATH IS ONLY THE BEGINNING!",
+      "details": ""
+    },
+    {
+      "category": 0,
+      "title": "Game Loop",
+      "details": "- Use corpses of insects and animals to feed your plants\n- Use traps to catch insects and animals\n- Use mushrooms to decompose the bodies\n- Resulting nutritions can be used to feed the plants\n- Insects and animals eat plants; catch them before they eat all of them!"
+    },
+    {
+      "category": 0,
+      "title": "Features",
+      "details": "- Plants with thorns are more robust and protect other plants from beeing eaten\n- Dirt walls protect plants; can be destroyed by insects and animals\n- (No water needed?)"
+    },
+    {
+      "category": 1,
+      "title": "How to get plants?",
+      "details": ""
+    },
+    {
+      "category": 1,
+      "title": "How to get mushroom spores?",
+      "details": ""
+    },
+    {
+      "category": 1,
+      "title": "How to get traps?",
+      "details": ""
+    }
+  ]
+}

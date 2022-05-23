@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://test/main.gd" type="Script" id=2]
+[ext_resource path="res://assets/earth.png" type="Texture" id=3]
+[ext_resource path="res://assets/mushroom2.png" type="Texture" id=4]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Background" type="ParallaxBackground" parent="."]
+layer = -1
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2( 1024, 512 )
+
+[node name="TextureRect" type="TextureRect" parent="Background/ParallaxLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 512.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+
+[node name="Map" type="YSort" parent="."]
+
+[node name="Foreground" type="TileMap" parent="Map"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 8 )
+cell_tile_origin = 1
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( 262155, 2, 0, 458801, 2, 0, 917521, 0, 0, 917522, 0, 0, 917523, 0, 0, 983057, 0, 0, 983059, 1, 0, 983060, 0, 0, 983061, 1, 0, 1048593, 0, 0, 1048594, 1, 0, 1048595, 0, 0, 1048596, 0, 0, 1048597, 0, 0, 1048598, 1, 0, 1048616, 3, 0, 1114129, 0, 0, 1114130, 0, 0, 1114131, 1, 0, 1114132, 0, 0, 1114133, 0, 0, 1114134, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 1, 0, 1179668, 1, 0, 1179669, 0, 0, 1179670, 0, 0, 1245200, 1, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1245204, 0, 0, 1245205, 0, 0, 1245206, 0, 0, 1310736, 1, 0, 1310737, 0, 0, 1310738, 0, 0, 1310740, 1, 0, 1310741, 0, 0, 1310742, 0, 0, 1310743, 3, 0, 1376272, 3, 0, 1376273, 0, 0, 1376274, 0, 0, 1376275, 0, 0, 1376276, 0, 0, 1376277, 0, 0, 1376278, 1, 0, 1376279, 3, 0, 1376292, 2, 0, 1441808, 3, 0, 1441809, 3, 0, 1441810, 0, 0, 1441811, 0, 0, 1441812, 3, 0, 1441813, 3, 0, 1441814, 3, 0, 1441815, 3, 0, 1507345, 3, 0, 1507346, 3, 0, 1507347, 3, 0, 1507348, 3, 0, 1507349, 3, 0, 1507350, 3, 0, 1507351, 3, 0, 1507366, 3, 0, 1572881, 3, 0, 1572882, 3, 0, 1572883, 3, 0, 1572884, 3, 0, 1572885, 3, 0, 1900556, 2, 0, 1900582, 2, 0, 1966105, 3, 0, 1966106, 2, 0, 1966108, 3, 0, 2097178, 3, 0, 2424851, 2, 0, 2490403, 3, 0, 2555934, 3, 0, 2818077, 3, 0, 3407892, 3, 0, 3473442, 3, 0 )
+
+[node name="Mushroom2" type="Sprite" parent="Map/Foreground"]
+position = Vector2( 296, 93 )
+texture = ExtResource( 4 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+rect_min_size = Vector2( 0, 16 )
+color = Color( 0, 0, 0, 0.25098 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ColorRect"]
+anchor_right = 1.0
+margin_bottom = 16.0
