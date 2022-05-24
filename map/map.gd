@@ -10,9 +10,8 @@ func add_enemy() -> void:
 	var position: = Vector2(randi() % 400, randi() % 200)
 	var enemy: Node2D = skeleton_scene.instance()
 	enemy.position = position
-	enemy.set_as_toplevel(true)
-
 	enemy.connect("died", self, "_on_enemy_died")
+	enemy.set_as_toplevel(true)
 
 	add_child(enemy)
 

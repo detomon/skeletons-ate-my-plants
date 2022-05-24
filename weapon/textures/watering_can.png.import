@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/watering_can.png-b1659ce61088b4b17f5617c28d25fac8.stex"
+path="res://.import/watering_can.png-51217ece01e2bd7b847d382e37679987.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/watering_can.png"
-dest_files=[ "res://.import/watering_can.png-b1659ce61088b4b17f5617c28d25fac8.stex" ]
+source_file="res://weapon/textures/watering_can.png"
+dest_files=[ "res://.import/watering_can.png-51217ece01e2bd7b847d382e37679987.stex" ]
 
 [params]
 

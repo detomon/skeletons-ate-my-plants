@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://player/player.png" type="Texture" id=1]
+[ext_resource path="res://player/textures/player.png" type="Texture" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
-[ext_resource path="res://player/watering_can.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapon/watering_can.tscn" type="PackedScene" id=3]
 [ext_resource path="res://audio/effects/collect.ogg" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -127,17 +127,17 @@ position = Vector2( 9, -6 )
 
 [node name="WateringCan" parent="Sprite/WeaponPosition" instance=ExtResource( 3 )]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 132
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 visible = false
 position = Vector2( -0.5, -6.5 )
 shape = SubResource( 1 )
 
-[node name="InteractionArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( -0.5, -6.5 )
 shape = SubResource( 1 )

@@ -12,7 +12,7 @@ config_version=4
 
 config/name="The GameDev.tv Game Jam 2022"
 run/main_scene="res://map/main.tscn"
-boot_splash/image="res://ui/splash.png"
+boot_splash/image="res://ui/textures/splash.png"
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 config/icon="res://icon.png"
@@ -73,7 +73,8 @@ click_left={
 
 2d_physics/layer_1="Static"
 2d_physics/layer_2="Damage"
-2d_physics/layer_3="Collectible"
+2d_physics/layer_3="Harmful"
+2d_physics/layer_8="Collectible"
 
 [physics]
 

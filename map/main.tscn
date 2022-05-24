@@ -1,17 +1,23 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://ui/abberation.gdshader" type="Shader" id=1]
+[ext_resource path="res://ui/shaders/abberation.gdshader" type="Shader" id=1]
 [ext_resource path="res://map/main.gd" type="Script" id=2]
 [ext_resource path="res://ui/theme.tres" type="Theme" id=3]
 [ext_resource path="res://env.tres" type="Environment" id=4]
 [ext_resource path="res://audio/music.ogg" type="AudioStream" id=5]
 [ext_resource path="res://map/map.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ui/ui.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/menu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/shaders/vignette.gdshader" type="Shader" id=8]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 1 )
 shader_param/abberation_size = 1.0
 shader_param/abberation_strength = 0.33
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 8 )
+shader_param/box_size = 0.35
+shader_param/box_radius = 0.5
 
 [node name="Main" type="Control"]
 pause_mode = 2
@@ -39,8 +45,13 @@ audio_listener_enable_2d = true
 
 [node name="Map" parent="ViewportContainer/Viewport" instance=ExtResource( 6 )]
 
-[node name="UI" parent="." instance=ExtResource( 7 )]
-visible = false
+[node name="Vignette" type="ColorRect" parent="."]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.360784 )
+
+[node name="Menu" parent="." instance=ExtResource( 7 )]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 pause_mode = 1
