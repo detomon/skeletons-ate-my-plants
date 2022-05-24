@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 const skeleton_scene: PackedScene = preload("res://skeleton/skeleton.tscn")
 

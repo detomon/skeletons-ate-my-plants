@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/weapon.png-0ffe951e2aebabbd52b642246e309a51.stex"
+path="res://.import/plant.png-ff0dbace12027a5bc8e0a9f4a912f16c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/weapon.png"
-dest_files=[ "res://.import/weapon.png-0ffe951e2aebabbd52b642246e309a51.stex" ]
+source_file="res://map/plant.png"
+dest_files=[ "res://.import/plant.png-ff0dbace12027a5bc8e0a9f4a912f16c.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -1,6 +1,5 @@
 extends Control
 
-onready var ui: Control = $UI
 onready var music: AudioStreamPlayer = $BackgroundMusic
 
 func _ready() -> void:

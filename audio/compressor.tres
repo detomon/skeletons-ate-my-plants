@@ -1,0 +1,6 @@
+[gd_resource type="AudioEffectCompressor" format=2]
+
+[resource]
+threshold = -25.0
+release_ms = 20.0
+sidechain = "Effects"

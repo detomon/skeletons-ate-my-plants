@@ -11,11 +11,15 @@ config_version=4
 [application]
 
 config/name="The GameDev.tv Game Jam 2022"
-run/main_scene="res://map/launch.tscn"
-boot_splash/image="res://map/splash.png"
+run/main_scene="res://map/main.tscn"
+boot_splash/image="res://ui/splash.png"
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 config/icon="res://icon.png"
+
+[audio]
+
+default_bus_layout="res://audio/default_bus_layout.tres"
 
 [display]
 

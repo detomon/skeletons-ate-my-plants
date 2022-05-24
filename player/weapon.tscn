@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://player/weapon.png" type="Texture" id=1]
+[ext_resource path="res://player/watering_can.png" type="Texture" id=1]
 [ext_resource path="res://player/weapon.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5, 5 )
+extents = Vector2( 6.5, 5.5 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -59,11 +59,11 @@ script = ExtResource( 2 )
 position = Vector2( 0, -16 )
 texture = ExtResource( 1 )
 centered = false
-hframes = 4
+hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 5, -5 )
+position = Vector2( 6.5, -5.5 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

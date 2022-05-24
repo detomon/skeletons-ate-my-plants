@@ -24,9 +24,10 @@ func _death() -> void:
 	emit_signal("died")
 
 func _on_damage_area_entered(area: Area2D) -> void:
+	var parent: = area.owner
 	var had_energy = energy > 0.0
 
-	energy -= 0.25
+	energy -= parent.DAMAGE
 
 	if energy <= 0.0 and had_energy:
 		die()

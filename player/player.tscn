@@ -2,7 +2,7 @@
 
 [ext_resource path="res://player/player.png" type="Texture" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
-[ext_resource path="res://player/weapon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player/watering_can.tscn" type="PackedScene" id=3]
 [ext_resource path="res://audio/effects/collect.ogg" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -22,6 +22,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/WeaponPosition:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 9, -6 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "idle"
@@ -38,6 +50,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/WeaponPosition:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ -6.0, -5.0 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -56,6 +80,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/WeaponPosition:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -6.0 ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "idle"
@@ -71,7 +107,7 @@ blend_point_1/pos = 1.0
 min_space = 0.0
 
 [sub_resource type="AnimationNodeBlendTree" id=5]
-graph_offset = Vector2( 0, -132 )
+graph_offset = Vector2( -109.62, -32.1975 )
 nodes/output/position = Vector2( 400, 160 )
 nodes/walk/node = SubResource( 4 )
 nodes/walk/position = Vector2( 160, 160 )
@@ -86,8 +122,10 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -8 )
 hframes = 4
 
-[node name="Weapon" parent="Sprite" instance=ExtResource( 3 )]
-position = Vector2( 3, -4 )
+[node name="WeaponPosition" type="Position2D" parent="Sprite"]
+position = Vector2( 9, -6 )
+
+[node name="WateringCan" parent="Sprite/WeaponPosition" instance=ExtResource( 3 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
