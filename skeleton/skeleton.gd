@@ -1,17 +1,20 @@
-extends KinematicBody2D
-
-signal died()
+extends "res://actor.gd"
 
 const DAMAGE: = 1.0
 const part_scene: PackedScene = preload("skeleton_part.tscn")
 
-onready var animation_tree: AnimationTree = $AnimationTree
-onready var parts_positions: = [
-	$PartPosition1,
-	#$PartPosition2,
-]
+onready var part_position: = $PartPosition
 
-var energy: = 1.0
+func _process(_delta: float) -> void:
+	var players: = get_tree().get_nodes_in_group("player")
+	if not players.empty():
+		var player: Node2D = players[0]
+		var to_player: = global_position.direction_to(player.global_position)
+
+		_handle_walking(to_player)
+
+func _get_speed() -> float:
+	return 10.0
 
 func _die() -> void:
 	animation_tree.set("parameters/death/active", true)
@@ -19,15 +22,12 @@ func _die() -> void:
 # called from animation
 func _death() -> void:
 	var parent: = get_parent()
-
-	for i in len(parts_positions):
-		var part: = part_scene.instance()
-		part.part_index = i
-		part.global_position = parts_positions[i].global_position
-		parent.call_deferred("add_child", part)
+	var part: = part_scene.instance()
+	part.global_position = part_position.global_position
+	parent.call_deferred("add_child", part)
 
 	queue_free()
-	emit_signal("died")
+	emit_signal("die")
 
 func _on_damage_area_entered(area: Area2D) -> void:
 	var container: = area.owner

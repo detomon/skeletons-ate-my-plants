@@ -4,7 +4,7 @@
 [ext_resource path="res://ui/shaders/blur_color.gdshader" type="Shader" id=2]
 [ext_resource path="res://ui/theme.tres" type="Theme" id=3]
 [ext_resource path="res://ui/textures/menu.png" type="Texture" id=4]
-[ext_resource path="res://skeleton/textures/skeleton_parts.png" type="Texture" id=5]
+[ext_resource path="res://skeleton/textures/skeleton_part.png" type="Texture" id=5]
 [ext_resource path="res://plant/textures/plant.png" type="Texture" id=6]
 
 [sub_resource type="AtlasTexture" id=7]
@@ -152,7 +152,7 @@ margin_right = 601.0
 margin_bottom = 8.0
 
 [node name="PlantsSprite" type="TextureRect" parent="MarginContainer/Bottom"]
-modulate = Color( 1.5, 1.5, 1.5, 1 )
+modulate = Color( 1.75, 1.75, 1.75, 1 )
 margin_left = 605.0
 margin_right = 613.0
 margin_bottom = 8.0

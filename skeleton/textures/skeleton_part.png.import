@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/skeleton_parts.png-55805f9a73cd4f05050c08a8b09624f0.stex"
+path="res://.import/skeleton_part.png-621afa16364496d90e72c52b396c1d90.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://skeleton/textures/skeleton_parts.png"
-dest_files=[ "res://.import/skeleton_parts.png-55805f9a73cd4f05050c08a8b09624f0.stex" ]
+source_file="res://skeleton/textures/skeleton_part.png"
+dest_files=[ "res://.import/skeleton_part.png-621afa16364496d90e72c52b396c1d90.stex" ]
 
 [params]
 

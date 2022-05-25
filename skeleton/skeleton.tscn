@@ -176,6 +176,9 @@ visible = false
 position = Vector2( -0.5, -3.5 )
 shape = SubResource( 17 )
 
+[node name="PartPosition" type="Position2D" parent="."]
+position = Vector2( -0.5, 0 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 5 )
 anims/death = SubResource( 11 )
@@ -193,11 +196,5 @@ parameters/walk/blend_position = 0.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = "Effects"
-
-[node name="PartPosition1" type="Position2D" parent="."]
-position = Vector2( -3, -4 )
-
-[node name="PartPosition2" type="Position2D" parent="."]
-position = Vector2( 2, 2 )
 
 [connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_entered"]
