@@ -6,7 +6,7 @@
 [ext_resource path="res://audio/effects/death.ogg" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2.5, 6.5 )
+extents = Vector2( 2.5, 6 )
 
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 5.5, 7.5 )
@@ -91,12 +91,12 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.35 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 0, 2 ]
+"values": [ 0, 3 ]
 }
 
 [sub_resource type="Animation" id=7]
 resource_name = "walk"
-length = 0.2
+length = 0.4
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -105,10 +105,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1 ]
+"values": [ 0, 1, 0, 2 ]
 }
 
 [sub_resource type="AnimationNodeOneShot" id=12]
@@ -139,7 +139,7 @@ blend_point_1/pos = 1.0
 min_space = 0.0
 
 [sub_resource type="AnimationNodeBlendTree" id=10]
-graph_offset = Vector2( 0, -132 )
+graph_offset = Vector2( 0, 51.09 )
 nodes/death/node = SubResource( 12 )
 nodes/death/position = Vector2( 380, 160 )
 nodes/death_anim/node = SubResource( 13 )
@@ -151,7 +151,7 @@ nodes/hit_anim/position = Vector2( 380, 380 )
 nodes/output/position = Vector2( 780, 160 )
 nodes/walk/node = SubResource( 4 )
 nodes/walk/position = Vector2( 160, 160 )
-node_connections = [ "output", 0, "hit", "death", 0, "walk", "death", 1, "death_anim", "hit", 0, "death", "hit", 1, "hit_anim" ]
+node_connections = [ "death", 0, "walk", "death", 1, "death_anim", "hit", 0, "death", "hit", 1, "hit_anim", "output", 0, "hit" ]
 
 [node name="Skeleton" type="KinematicBody2D" groups=["enemy"]]
 script = ExtResource( 2 )
@@ -164,7 +164,7 @@ hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( -0.5, -6.5 )
+position = Vector2( -0.5, -6 )
 shape = SubResource( 1 )
 
 [node name="DamageArea" type="Area2D" parent="."]
@@ -173,7 +173,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 visible = false
-position = Vector2( -0.5, -6.5 )
+position = Vector2( -0.5, -6 )
 shape = SubResource( 17 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 	animation_tree.set("parameters/walk/blend_position", round(velocity.length() / SPEED))
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("shoot"):
 		var throw_dir: = Vector2.ZERO
 
 		if direction.length() > 0.1:
@@ -52,5 +52,8 @@ func _on_interaction_area_entered(area: Area2D) -> void:
 		print("harm", energy)
 
 	elif container.is_in_group("collectible"):
-		collect_audio.play()
-		container.queue_free()
+		collect(container)
+
+func collect(node: Node2D) -> void:
+	collect_audio.play()
+	node.queue_free()

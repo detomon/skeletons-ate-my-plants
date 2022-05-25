@@ -22,12 +22,13 @@ func _get_bus_index(bus_name: String) -> int:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		_pause_or_unpause()
+		pause_or_unpause()
 
-func _pause_or_unpause() -> void:
-	get_tree().paused = not get_tree().paused
+func pause_or_unpause() -> void:
+	var tree: = get_tree()
+	tree.paused = not tree.paused
 
-	if get_tree().paused:
+	if tree.paused:
 		animation_player.play("fade_in")
 	else:
 		animation_player.play("fade_out")
@@ -39,10 +40,10 @@ func _on_effects_volume_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(effects_bus_index, linear2db(value))
 
 func _on_continue_pressed() -> void:
-	_pause_or_unpause()
+	pause_or_unpause()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 func _on_menu_button_pressed() -> void:
-	_pause_or_unpause()
+	pause_or_unpause()

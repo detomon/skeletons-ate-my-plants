@@ -41,3 +41,13 @@ func throw(direction: Vector2, new_return_target: Node2D) -> void:
 	set_as_toplevel(false)
 	position = Vector2.ZERO
 	self.state = AnimationState.STATE_IDLE
+
+func _on_damage_area_entered(area: Area2D) -> void:
+	var item: = area.owner
+
+	if not item:
+		item = area
+
+	if item.is_in_group("collectible"):
+		if return_target:
+			return_target.owner.collect(item)

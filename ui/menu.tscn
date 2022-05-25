@@ -12,7 +12,7 @@ shader_param/blur = 2.0
 [sub_resource type="Animation" id=5]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:material:shader_param/blur")
+tracks/0/path = NodePath("MenuContainer/Background:material:shader_param/blur")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -29,7 +29,7 @@ resource_name = "fade_in"
 length = 0.05
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:material:shader_param/blur")
+tracks/0/path = NodePath("MenuContainer/Background:material:shader_param/blur")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -58,7 +58,7 @@ resource_name = "fade_out"
 length = 0.1
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:material:shader_param/blur")
+tracks/0/path = NodePath("MenuContainer/Background:material:shader_param/blur")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -83,6 +83,7 @@ tracks/1/keys = {
 }
 
 [node name="Menu" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -91,19 +92,30 @@ script = ExtResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
-margin_bottom = 32.0
-custom_constants/margin_right = 4
-custom_constants/margin_top = 4
+margin_bottom = 18.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
 custom_constants/margin_left = 4
-custom_constants/margin_bottom = 4
+custom_constants/margin_bottom = 2
 
-[node name="MenuButton" type="TextureButton" parent="MarginContainer"]
-margin_left = 1164.0
-margin_top = 4.0
-margin_right = 1196.0
-margin_bottom = 36.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 1198.0
+margin_bottom = 16.0
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_top = 3.0
+margin_right = 24.0
+margin_bottom = 11.0
+text = "x12"
+
+[node name="MenuButton" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+margin_left = 1182.0
+margin_right = 1194.0
+margin_bottom = 14.0
 mouse_default_cursor_shape = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
 texture_normal = ExtResource( 4 )
 
 [node name="MenuContainer" type="Control" parent="."]
@@ -122,61 +134,61 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/CenterContainer"]
-margin_left = 488.0
-margin_top = 225.0
-margin_right = 712.0
-margin_bottom = 449.0
+margin_left = 544.0
+margin_top = 267.0
+margin_right = 656.0
+margin_bottom = 407.0
 
 [node name="MusicVolumeLabel" type="Label" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_right = 224.0
-margin_bottom = 16.0
+margin_right = 112.0
+margin_bottom = 8.0
 text = "Music Volume"
 
 [node name="MusicVolume" type="HSlider" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 24.0
-margin_right = 224.0
-margin_bottom = 40.0
+margin_top = 16.0
+margin_right = 112.0
+margin_bottom = 28.0
 mouse_default_cursor_shape = 10
 max_value = 1.0
 step = 0.0
 value = 0.5
 
 [node name="HSeparator" type="HSeparator" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 48.0
-margin_right = 224.0
-margin_bottom = 60.0
+margin_top = 36.0
+margin_right = 112.0
+margin_bottom = 40.0
 
 [node name="EffectsVolumeLabel" type="Label" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 68.0
-margin_right = 224.0
-margin_bottom = 84.0
+margin_top = 48.0
+margin_right = 112.0
+margin_bottom = 56.0
 text = "Effects Volume"
 
 [node name="EffectsVolume" type="HSlider" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 92.0
-margin_right = 224.0
-margin_bottom = 108.0
+margin_top = 64.0
+margin_right = 112.0
+margin_bottom = 76.0
 mouse_default_cursor_shape = 10
 max_value = 1.0
 step = 0.0
 value = 0.5
 
 [node name="HSeparator2" type="HSeparator" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 116.0
-margin_right = 224.0
-margin_bottom = 128.0
+margin_top = 84.0
+margin_right = 112.0
+margin_bottom = 88.0
 
 [node name="ContinueButton" type="Button" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 136.0
-margin_right = 224.0
-margin_bottom = 176.0
+margin_top = 96.0
+margin_right = 112.0
+margin_bottom = 114.0
 mouse_default_cursor_shape = 2
 text = "Continue"
 
 [node name="QuitButton" type="Button" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 184.0
-margin_right = 224.0
-margin_bottom = 224.0
+margin_top = 122.0
+margin_right = 112.0
+margin_bottom = 140.0
 mouse_default_cursor_shape = 2
 text = "Quit"
 
@@ -185,7 +197,7 @@ anims/RESET = SubResource( 5 )
 anims/fade_in = SubResource( 4 )
 anims/fade_out = SubResource( 6 )
 
-[connection signal="pressed" from="MarginContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="value_changed" from="MenuContainer/CenterContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_changed"]
 [connection signal="value_changed" from="MenuContainer/CenterContainer/VBoxContainer/EffectsVolume" to="." method="_on_effects_volume_changed"]
 [connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_pressed"]
