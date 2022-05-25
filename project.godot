@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "PlantPot",
+"language": "GDScript",
+"path": "res://plant/pot.gd"
+} ]
+_global_script_class_icons={
+"PlantPot": ""
+}
+
 [application]
 
 config/name="The GameDev.tv Game Jam 2022"

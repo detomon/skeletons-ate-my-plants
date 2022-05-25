@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://player/textures/player.png" type="Texture" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
 [ext_resource path="res://weapon/watering_can.tscn" type="PackedScene" id=3]
 [ext_resource path="res://audio/effects/collect.ogg" type="AudioStream" id=4]
+[ext_resource path="res://audio/effects/death_player.ogg" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2.5, 6 )
@@ -33,6 +34,74 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 9, -6 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/WeaponPosition:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "death"
+step = 0.02
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0.02 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.16, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_respawn"
+} ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -93,6 +162,14 @@ tracks/1/keys = {
 "values": [ -6.0 ]
 }
 
+[sub_resource type="AnimationNodeOneShot" id=11]
+fadein_time = 0.02
+fadeout_time = 0.02
+sync = true
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "death"
+
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "idle"
 
@@ -108,12 +185,16 @@ min_space = 0.0
 
 [sub_resource type="AnimationNodeBlendTree" id=5]
 graph_offset = Vector2( -109.62, -32.1975 )
-nodes/output/position = Vector2( 400, 160 )
+nodes/death/node = SubResource( 11 )
+nodes/death/position = Vector2( 400, 160 )
+nodes/death_anim/node = SubResource( 12 )
+nodes/death_anim/position = Vector2( 160, 300 )
+nodes/output/position = Vector2( 620, 160 )
 nodes/walk/node = SubResource( 4 )
 nodes/walk/position = Vector2( 160, 160 )
-node_connections = [ "output", 0, "walk" ]
+node_connections = [ "death", 0, "walk", "death", 1, "death_anim", "output", 0, "death" ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -121,6 +202,7 @@ position = Vector2( 0, 1 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -8 )
 hframes = 4
+vframes = 2
 
 [node name="WeaponPosition" type="Position2D" parent="Sprite"]
 position = Vector2( 9, -6 )
@@ -129,7 +211,7 @@ position = Vector2( 9, -6 )
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 132
+collision_mask = 140
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
@@ -144,6 +226,7 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
+anims/death = SubResource( 10 )
 anims/idle = SubResource( 6 )
 anims/walk = SubResource( 3 )
 
@@ -151,7 +234,13 @@ anims/walk = SubResource( 3 )
 tree_root = SubResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
+parameters/death/active = false
 parameters/walk/blend_position = 0.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -96.5356
+bus = "Effects"
 
 [node name="CollectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )

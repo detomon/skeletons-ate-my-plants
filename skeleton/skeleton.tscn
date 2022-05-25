@@ -42,7 +42,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 4 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PoolRealArray( 0.02 )
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -74,7 +74,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 3 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PoolRealArray( 0.02 )
 }
 
 [sub_resource type="Animation" id=6]

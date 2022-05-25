@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=2]
+[gd_resource type="Theme" load_steps=11 format=2]
 
 [ext_resource path="res://ui/fonts/PressStart2P-vaV7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/textures/grabber_disabled.png" type="Texture" id=2]
@@ -42,6 +42,8 @@ grow_begin = -1.0
 grow_end = -1.0
 thickness = 2
 
+[sub_resource type="StyleBoxEmpty" id=7]
+
 [sub_resource type="DynamicFont" id=3]
 size = 8
 font_data = ExtResource( 1 )
@@ -62,3 +64,5 @@ HSlider/styles/grabber_area = SubResource( 4 )
 HSlider/styles/grabber_area_highlight = SubResource( 4 )
 HSlider/styles/slider = SubResource( 5 )
 VBoxContainer/constants/separation = 8
+VSeparator/constants/separation = 8
+VSeparator/styles/separator = SubResource( 7 )

@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal died()
 
-const DAMAGE: = 0.25
+const DAMAGE: = 1.0
 const part_scene: PackedScene = preload("skeleton_part.tscn")
 
 onready var animation_tree: AnimationTree = $AnimationTree
