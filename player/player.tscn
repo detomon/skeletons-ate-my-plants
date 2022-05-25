@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://player/textures/player.png" type="Texture" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
@@ -7,7 +7,10 @@
 [ext_resource path="res://audio/effects/death_player.ogg" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2.5, 6 )
+extents = Vector2( 2.5, 3 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 2.5, 3 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -58,6 +61,48 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "blink"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false, true, false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_reset_energy"
+} ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -162,6 +207,9 @@ tracks/1/keys = {
 "values": [ -6.0 ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "blink"
+
 [sub_resource type="AnimationNodeOneShot" id=11]
 fadein_time = 0.02
 fadeout_time = 0.02
@@ -169,6 +217,8 @@ sync = true
 
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "death"
+
+[sub_resource type="AnimationNodeOneShot" id=15]
 
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "idle"
@@ -185,14 +235,18 @@ min_space = 0.0
 
 [sub_resource type="AnimationNodeBlendTree" id=5]
 graph_offset = Vector2( -109.62, -32.1975 )
+nodes/blink_anim/node = SubResource( 16 )
+nodes/blink_anim/position = Vector2( 400, 360 )
 nodes/death/node = SubResource( 11 )
 nodes/death/position = Vector2( 400, 160 )
 nodes/death_anim/node = SubResource( 12 )
 nodes/death_anim/position = Vector2( 160, 300 )
-nodes/output/position = Vector2( 620, 160 )
+nodes/invincible/node = SubResource( 15 )
+nodes/invincible/position = Vector2( 640, 160 )
+nodes/output/position = Vector2( 840, 160 )
 nodes/walk/node = SubResource( 4 )
 nodes/walk/position = Vector2( 160, 160 )
-node_connections = [ "death", 0, "walk", "death", 1, "death_anim", "output", 0, "death" ]
+node_connections = [ "death", 0, "walk", "death", 1, "death_anim", "invincible", 0, "death", "invincible", 1, "blink_anim", "output", 0, "invincible" ]
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 2 )
@@ -216,16 +270,17 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 visible = false
-position = Vector2( -0.5, -6 )
+position = Vector2( -0.5, -3 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( -0.5, -6 )
-shape = SubResource( 1 )
+position = Vector2( -0.5, -3 )
+shape = SubResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
+anims/blink = SubResource( 14 )
 anims/death = SubResource( 10 )
 anims/idle = SubResource( 6 )
 anims/walk = SubResource( 3 )
@@ -235,6 +290,7 @@ tree_root = SubResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/death/active = false
+parameters/invincible/active = false
 parameters/walk/blend_position = 0.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -245,5 +301,10 @@ bus = "Effects"
 [node name="CollectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 bus = "Effects"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
 
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_entered"]

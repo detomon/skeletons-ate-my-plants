@@ -6,10 +6,10 @@
 [ext_resource path="res://audio/effects/death.ogg" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2.5, 6 )
+extents = Vector2( 2.5, 3 )
 
 [sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 5.5, 7.5 )
+extents = Vector2( 5.5, 5.5 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -164,7 +164,7 @@ hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( -0.5, -6 )
+position = Vector2( -0.5, -3 )
 shape = SubResource( 1 )
 
 [node name="DamageArea" type="Area2D" parent="."]
@@ -173,7 +173,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 visible = false
-position = Vector2( -0.5, -6 )
+position = Vector2( -0.5, -3.5 )
 shape = SubResource( 17 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -13,8 +13,8 @@ var pots_count: = 0
 var plants_count: = 0
 
 func _ready() -> void:
-	for i in 10:
-		_add_enemy()
+#	for i in 10:
+#		_add_enemy()
 
 	pots_count = _count_pots()
 
@@ -26,17 +26,22 @@ func _count_pots() -> int:
 
 	return count
 
-func _add_enemy() -> void:
-	var position: = Vector2(randi() % 400, randi() % 200)
-	var enemy: Node2D = skeleton_scene.instance()
-	enemy.position = position
-	enemy.connect("died", self, "_on_enemy_died")
-	enemy.set_as_toplevel(true)
+#func _add_enemy() -> void:
+#	var position: = Vector2(randi() % 400, randi() % 200)
+#	var enemy: Node2D = skeleton_scene.instance()
+#	enemy.position = position
+#	enemy.connect("died", self, "_on_enemy_died")
+#	enemy.set_as_toplevel(true)
+#
+#	add_child(enemy)
 
-	add_child(enemy)
+func get_used_rect() -> Rect2:
+	var rect: Rect2 = map.get_used_rect()
+	return Rect2(rect.position * map.cell_size, rect.size * map.cell_size)
 
 func _on_enemy_died() -> void:
-	_add_enemy()
+	pass
+#	_add_enemy()
 
 func _on_player_collect(parts_count: int) -> void:
 	emit_signal("player_collect", parts_count)

@@ -16,8 +16,8 @@ shader_param/abberation_strength = 0.33
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 8 )
-shader_param/box_size = 0.35
-shader_param/box_radius = 0.5
+shader_param/box_size = 0.335
+shader_param/box_radius = 0.394
 
 [node name="Main" type="Control"]
 pause_mode = 2
@@ -44,13 +44,15 @@ render_target_update_mode = 3
 [node name="Map" parent="ViewportContainer/Viewport" instance=ExtResource( 6 )]
 pause_mode = 1
 
-[node name="Vignette" type="ColorRect" parent="ViewportContainer/Viewport"]
+[node name="CanvasLayer" type="CanvasLayer" parent="ViewportContainer/Viewport"]
+
+[node name="Vignette" type="ColorRect" parent="ViewportContainer/Viewport/CanvasLayer"]
 material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.360784 )
 
-[node name="Menu" parent="ViewportContainer/Viewport" instance=ExtResource( 7 )]
+[node name="Menu" parent="ViewportContainer/Viewport/CanvasLayer" instance=ExtResource( 7 )]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 pause_mode = 1

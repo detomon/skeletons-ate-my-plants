@@ -12,6 +12,7 @@ onready var weapon_return_target: Node2D = $Sprite/WeaponPosition
 onready var animation_tree: AnimationTree = $AnimationTree
 onready var collect_audio: AudioStreamPlayer = $CollectAudio
 onready var interaction_area: Area2D = $InteractionArea
+onready var camera: Camera2D = $Camera2D
 
 var energy: = 1.0
 var direction: = Vector2.ZERO
@@ -42,33 +43,16 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("shoot"):
-		var pot: = get_near_pot()
+		var throw_dir: = Vector2.ZERO
 
-		if pot:
-			try_plant(pot)
+		if direction.length() > 0.1:
+			# use move speed
+			throw_dir = direction
 		else:
-			var throw_dir: = Vector2.ZERO
+			# use facing direction when stading
+			throw_dir = sprite.global_transform.basis_xform(Vector2.RIGHT)
 
-			if direction.length() > 0.1:
-				# use move speed
-				throw_dir = direction
-			else:
-				# use facing direction when stading
-				throw_dir = sprite.global_transform.basis_xform(Vector2.RIGHT)
-
-			weapon.throw(throw_dir, weapon_return_target)
-
-func get_near_pot() -> Node2D:
-	var areas: = interaction_area.get_overlapping_areas()
-
-	for area in areas:
-		if area.is_in_group("pot"):
-			return area
-
-	return null
-
-func try_plant(pot: Node2D) -> void:
-	print("plant", pot)
+		weapon.throw(throw_dir, weapon_return_target)
 
 func is_death() -> bool:
 	return energy <= 0.0
@@ -96,9 +80,12 @@ func _die() -> void:
 
 # called from animation
 func _respawn() -> void:
-	energy = 1.0
 	weapon.visible = true
+	animation_tree.set("parameters/invincible/active", true)
 	emit_signal("die")
+
+func _reset_energy() -> void:
+	energy = 1.0
 
 func collect(node: Node2D) -> void:
 	collect_audio.play()

@@ -44,9 +44,13 @@ func _input(event: InputEvent) -> void:
 
 func pause_or_unpause() -> void:
 	var tree: = get_tree()
-	tree.paused = not tree.paused
+	set_paused(not tree.paused)
 
-	if tree.paused:
+func set_paused(value: bool) -> void:
+	var tree: = get_tree()
+	tree.paused = value
+
+	if value:
 		animation_player.play("fade_in")
 	else:
 		animation_player.play("fade_out")

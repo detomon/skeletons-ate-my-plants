@@ -3,7 +3,7 @@ class_name PlantPot
 
 signal planted()
 
-const PARTS_NEEDED: = 9
+const PARTS_NEEDED: = 7
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var missing_parts_label: Control = $MissingPartsLabel
