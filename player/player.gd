@@ -79,11 +79,11 @@ func collect(node: Node2D) -> void:
 	parts_count += 1
 	emit_signal("collect", parts_count)
 
-func can_plant() -> bool:
-	return parts_count >= PlantPot.PARTS_NEEDED
+func can_plant(count: int) -> bool:
+	return parts_count >= count
 
 # called from pot
-func plant() -> void:
-	if can_plant():
-		parts_count -= PlantPot.PARTS_NEEDED
+func plant(count: int) -> void:
+	if can_plant(count):
+		parts_count -= count
 		emit_signal("collect", parts_count)

@@ -1,9 +1,7 @@
 extends Node2D
 
 signal player_collect(parts_count)
-signal planted(plants_count)
-
-const skeleton_scene: PackedScene = preload("res://skeleton/skeleton.tscn")
+signal planted(plants_count, finished)
 
 onready var player: Node2D = $TileMap/Player
 onready var player_start: Node2D = $TileMap/PlayerStart
@@ -13,9 +11,6 @@ var pots_count: = 0
 var plants_count: = 0
 
 func _ready() -> void:
-#	for i in 10:
-#		_add_enemy()
-
 	pots_count = _count_pots()
 
 func _count_pots() -> int:
@@ -26,22 +21,9 @@ func _count_pots() -> int:
 
 	return count
 
-#func _add_enemy() -> void:
-#	var position: = Vector2(randi() % 400, randi() % 200)
-#	var enemy: Node2D = skeleton_scene.instance()
-#	enemy.position = position
-#	enemy.connect("died", self, "_on_enemy_died")
-#	enemy.set_as_toplevel(true)
-#
-#	add_child(enemy)
-
 func get_used_rect() -> Rect2:
 	var rect: Rect2 = map.get_used_rect()
 	return Rect2(rect.position * map.cell_size, rect.size * map.cell_size)
-
-func _on_enemy_died() -> void:
-	pass
-#	_add_enemy()
 
 func _on_player_collect(parts_count: int) -> void:
 	emit_signal("player_collect", parts_count)
@@ -58,4 +40,5 @@ func _on_player_die() -> void:
 
 func _on_pot_planted() -> void:
 	plants_count += 1
-	emit_signal("planted", plants_count)
+	var finished: = plants_count >= pots_count
+	emit_signal("planted", plants_count, finished)
