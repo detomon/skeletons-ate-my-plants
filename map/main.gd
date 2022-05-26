@@ -1,6 +1,7 @@
 extends Control
 
 const stage_scene: = preload("res://map/stage.tscn")
+const SCENE_FADE_COLOR: = Color(0.5, 0.0, 0.0, 0.0)
 
 onready var stage: Node2D
 onready var menu: Control = $ViewportContainer/Viewport/CanvasLayer/Menu
@@ -54,19 +55,25 @@ func _on_map_planted(plants_count: int, finished: bool) -> void:
 
 # TODO: implement loading next stage
 func load_next_map() -> void:
-		tween.interpolate_property(viewport_container, "modulate", Color.white, Color.black, 0.5, Tween.TRANS_SINE, Tween.EASE_OUT)
+		tween.interpolate_property(viewport_container, "modulate", Color.white, SCENE_FADE_COLOR, 0.25, Tween.TRANS_SINE, Tween.EASE_OUT)
 		tween.interpolate_property(self, "music_volume", 1.0, 0.0, 0.5, Tween.TRANS_SINE, Tween.EASE_OUT)
 		tween.start()
 		yield(tween, "tween_completed")
 
 		stage.queue_free()
+
+		yield(get_tree().create_timer(1.0), "timeout")
+		music.stop()
+
 		reset()
 		add_map()
 
-		tween.interpolate_property(viewport_container, "modulate", Color.black, Color.white, 0.5, Tween.TRANS_SINE, Tween.EASE_OUT)
-		tween.interpolate_property(self, "music_volume", 0.0, 1.0, 0.5, Tween.TRANS_SINE, Tween.EASE_OUT)
+		tween.interpolate_property(viewport_container, "modulate", SCENE_FADE_COLOR, Color.white, 0.25, Tween.TRANS_SINE, Tween.EASE_OUT)
 		tween.start()
 		yield(tween, "tween_completed")
+
+		self.music_volume = 1.0
+		music.play()
 
 func _notification(what: int) -> void:
 	match what:
