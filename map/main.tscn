@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://ui/shaders/abberation.gdshader" type="Shader" id=1]
 [ext_resource path="res://map/main.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://audio/assets/victory.ogg" type="AudioStream" id=6]
 [ext_resource path="res://ui/menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/shaders/vignette.gdshader" type="Shader" id=8]
+[ext_resource path="res://map/intro.tscn" type="PackedScene" id=9]
+[ext_resource path="res://map/outro.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 1 )
@@ -66,14 +68,20 @@ anchor_bottom = 1.0
 
 [node name="StageName" type="Label" parent="ViewportContainer/Viewport/StageNameContainer"]
 margin_left = 172.0
-margin_top = 97.0
+margin_top = 94.0
 margin_right = 228.0
-margin_bottom = 127.0
+margin_bottom = 130.0
 theme = ExtResource( 3 )
 text = "STAGE 1
 
 Title"
 align = 1
+
+[node name="Intro" parent="ViewportContainer/Viewport" instance=ExtResource( 9 )]
+visible = false
+
+[node name="Outro" parent="ViewportContainer/Viewport" instance=ExtResource( 10 )]
+visible = false
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -89,3 +97,6 @@ bus = "Music"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 4 )
+
+[connection signal="play" from="ViewportContainer/Viewport/Intro" to="." method="_on_intro_play"]
+[connection signal="play" from="ViewportContainer/Viewport/Outro" to="." method="_on_outro_play"]

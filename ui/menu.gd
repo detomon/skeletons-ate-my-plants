@@ -5,8 +5,8 @@ func set_pots_count(value: int) -> void:
 	pots_count = value
 	set_plants_count(plants_count)
 
-onready var music_volume: HSlider = $MenuContainer/CenterContainer/VBoxContainer/MusicVolume
-onready var effects_volume: HSlider = $MenuContainer/CenterContainer/VBoxContainer/EffectsVolume
+onready var music_volume: HSlider = $MenuContainer/SettingsContainer/VBoxContainer/MusicVolume
+onready var effects_volume: HSlider = $MenuContainer/SettingsContainer/VBoxContainer/EffectsVolume
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var menu_container: Control = $MenuContainer
 onready var parts_count_label: Label = $MarginContainer/Bottom/PartsCountLabel

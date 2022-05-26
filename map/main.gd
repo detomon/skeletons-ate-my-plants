@@ -5,12 +5,14 @@ const SCENES: = [
 	"res://map/stage_2.tscn",
 ]
 
-const SCENE_FADE_COLOR: = Color(0.75, 0.0, 0.0, 0.0)
+const FADE_COLOR: = Color(0.75, 0.0, 0.0, 0.0)
 const FADE_TIME: = 0.5
 
 onready var stage: Node2D
 onready var menu_container: Control = $ViewportContainer/Viewport/CanvasLayer/MenuContainer
 onready var menu: Control = $ViewportContainer/Viewport/CanvasLayer/MenuContainer/Menu
+onready var intro: Control = $ViewportContainer/Viewport/Intro
+onready var outro: Control = $ViewportContainer/Viewport/Outro
 onready var music: AudioStreamPlayer = $BackgroundMusic
 onready var victory_music: AudioStreamPlayer = $VictoryMusic
 onready var game_container: Control = $ViewportContainer/Viewport/GameContainer
@@ -22,11 +24,18 @@ onready var tween: Tween = $Tween
 var scene_index: = 0
 
 func _ready() -> void:
-	game_container.modulate = SCENE_FADE_COLOR
-	menu_container.modulate = SCENE_FADE_COLOR
+	game_container.modulate = FADE_COLOR
+	menu_container.modulate = FADE_COLOR
+
 	menu.visible = false
 	stage_name_container.visible = false
-	call_deferred("load_next_map")
+
+	intro.modulate = FADE_COLOR
+	intro.visible = false
+	outro.modulate = FADE_COLOR
+	outro.visible = false
+
+	fade_in(intro)
 
 func _add_stage(new_state: Node2D) -> void:
 	stage = new_state
@@ -41,22 +50,23 @@ func _add_stage(new_state: Node2D) -> void:
 	stage.player.set_camera_limits(rect)
 
 func unload_stage() -> void:
-	tween.interpolate_property(menu_container, "modulate", menu_container.modulate, SCENE_FADE_COLOR, FADE_TIME, Tween.TRANS_SINE, Tween.EASE_OUT)
-	tween.interpolate_property(game_container, "modulate", game_container.modulate, SCENE_FADE_COLOR, FADE_TIME, Tween.TRANS_SINE, Tween.EASE_OUT)
+	tween.interpolate_property(menu_container, "modulate", Color.white, FADE_COLOR, FADE_TIME, Tween.TRANS_SINE, Tween.EASE_OUT)
+	tween.interpolate_property(game_container, "modulate", Color.white, FADE_COLOR, FADE_TIME, Tween.TRANS_SINE, Tween.EASE_OUT)
 	tween.start()
 	yield(tween, "tween_completed")
 
 	music.stop()
 	if stage:
 		stage.queue_free()
+		stage = null
 
 func load_stage(new_stage: Node2D) -> void:
 	_add_stage(new_stage)
 	reset()
 
 	menu.visible = true # hidden in stage outro
-	tween.interpolate_property(menu_container, "modulate", SCENE_FADE_COLOR, Color.white, FADE_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
-	tween.interpolate_property(game_container, "modulate", SCENE_FADE_COLOR, Color.white, FADE_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.interpolate_property(menu_container, "modulate", FADE_COLOR, Color.white, FADE_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.interpolate_property(game_container, "modulate", FADE_COLOR, Color.white, FADE_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
 	tween.start()
 	yield(tween, "tween_completed")
 
@@ -98,25 +108,51 @@ func _on_map_planted(plants_count: int, finished: bool) -> void:
 	if finished:
 		finish_stage()
 
+func fade_in(node: CanvasItem) -> void:
+	node.visible = true
+	tween.interpolate_property(node, "modulate", FADE_COLOR, Color.white, FADE_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.start()
+	yield(tween, "tween_completed")
+
+func fade_out(node: CanvasItem) -> void:
+	tween.interpolate_property(node, "modulate", Color.white, FADE_COLOR, FADE_TIME, Tween.TRANS_SINE, Tween.EASE_OUT)
+	tween.start()
+	yield(tween, "tween_completed")
+	node.visible = false
+
 # TODO: implement loading next stage
 func load_next_map() -> void:
 	yield(unload_stage(), "completed")
 	yield(get_tree().create_timer(1.0), "timeout")
 
-	var stage_scene: PackedScene = load(SCENES[scene_index])
-	stage = stage_scene.instance()
-	scene_index = wrapi(scene_index + 1, 0, len(SCENES))
+	if scene_index < len(SCENES):
+		var stage_scene: PackedScene = load(SCENES[scene_index])
+		stage = stage_scene.instance()
+		scene_index += 1
 
-	stage_name.text = "STAGE %d\n\n%s" % [stage.stage_number, stage.stage_name]
-	stage_name_container.visible = true
+		stage_name.text = "STAGE %d\n\n%s" % [stage.stage_number, stage.stage_name]
+		stage_name_container.visible = true
 
-	yield(get_tree().create_timer(3.0), "timeout")
-	stage_name_container.visible = false
+		yield(get_tree().create_timer(3.0), "timeout")
+		stage_name_container.visible = false
 
-	yield(get_tree().create_timer(0.5), "timeout")
-	yield(load_stage(stage), "completed")
+		yield(get_tree().create_timer(0.5), "timeout")
+		yield(load_stage(stage), "completed")
+
+	else:
+		outro.visible = true
+		fade_in(outro)
 
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_WM_FOCUS_OUT:
 			menu.set_paused(true)
+
+func _on_intro_play() -> void:
+	yield(fade_out(intro), "completed")
+	load_next_map()
+
+func _on_outro_play() -> void:
+	yield(fade_out(outro), "completed")
+	scene_index = 0
+	load_next_map()

@@ -65,7 +65,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=6]
 resource_name = "fade_out"
-length = 0.1
+length = 0.05
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("MenuContainer/Background:material:shader_param/blur")
@@ -129,7 +129,7 @@ texture_normal = ExtResource( 4 )
 
 [node name="Bottom" type="HBoxContainer" parent="MarginContainer"]
 margin_left = 4.0
-margin_top = 662.0
+margin_top = 660.0
 margin_right = 1198.0
 margin_bottom = 670.0
 mouse_filter = 2
@@ -139,33 +139,33 @@ alignment = 1
 [node name="PartsSprite" type="TextureRect" parent="MarginContainer/Bottom"]
 margin_left = 553.0
 margin_right = 561.0
-margin_bottom = 8.0
+margin_bottom = 10.0
 texture = SubResource( 7 )
 stretch_mode = 4
 
 [node name="PartsCountLabel" type="Label" parent="MarginContainer/Bottom"]
 margin_left = 565.0
 margin_right = 589.0
-margin_bottom = 8.0
+margin_bottom = 10.0
 text = "x00"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/Bottom"]
 margin_left = 593.0
 margin_right = 601.0
-margin_bottom = 8.0
+margin_bottom = 10.0
 
 [node name="PlantsSprite" type="TextureRect" parent="MarginContainer/Bottom"]
 modulate = Color( 1.75, 1.75, 1.75, 1 )
 margin_left = 605.0
 margin_right = 613.0
-margin_bottom = 8.0
+margin_bottom = 10.0
 texture = SubResource( 8 )
 stretch_mode = 4
 
 [node name="PlantsCountLabel" type="Label" parent="MarginContainer/Bottom"]
 margin_left = 617.0
 margin_right = 641.0
-margin_bottom = 8.0
+margin_bottom = 10.0
 text = "0/0"
 
 [node name="MenuContainer" type="Control" parent="."]
@@ -179,66 +179,66 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
 
-[node name="CenterContainer" type="CenterContainer" parent="MenuContainer"]
+[node name="SettingsContainer" type="CenterContainer" parent="MenuContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/SettingsContainer"]
 margin_left = 544.0
-margin_top = 267.0
+margin_top = 263.0
 margin_right = 656.0
-margin_bottom = 407.0
+margin_bottom = 411.0
 
-[node name="MusicVolumeLabel" type="Label" parent="MenuContainer/CenterContainer/VBoxContainer"]
+[node name="MusicVolumeLabel" type="Label" parent="MenuContainer/SettingsContainer/VBoxContainer"]
 margin_right = 112.0
-margin_bottom = 8.0
+margin_bottom = 10.0
 text = "Music Volume"
 
-[node name="MusicVolume" type="HSlider" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 16.0
+[node name="MusicVolume" type="HSlider" parent="MenuContainer/SettingsContainer/VBoxContainer"]
+margin_top = 18.0
 margin_right = 112.0
-margin_bottom = 28.0
+margin_bottom = 30.0
 mouse_default_cursor_shape = 10
 max_value = 1.0
 step = 0.0
 value = 0.5
 
-[node name="HSeparator" type="HSeparator" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 36.0
+[node name="HSeparator" type="HSeparator" parent="MenuContainer/SettingsContainer/VBoxContainer"]
+margin_top = 38.0
 margin_right = 112.0
-margin_bottom = 40.0
+margin_bottom = 42.0
 
-[node name="EffectsVolumeLabel" type="Label" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 48.0
+[node name="EffectsVolumeLabel" type="Label" parent="MenuContainer/SettingsContainer/VBoxContainer"]
+margin_top = 50.0
 margin_right = 112.0
-margin_bottom = 56.0
+margin_bottom = 60.0
 text = "Effects Volume"
 
-[node name="EffectsVolume" type="HSlider" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 64.0
+[node name="EffectsVolume" type="HSlider" parent="MenuContainer/SettingsContainer/VBoxContainer"]
+margin_top = 68.0
 margin_right = 112.0
-margin_bottom = 76.0
+margin_bottom = 80.0
 mouse_default_cursor_shape = 10
 max_value = 1.0
 step = 0.0
 value = 0.5
 
-[node name="HSeparator2" type="HSeparator" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 84.0
+[node name="HSeparator2" type="HSeparator" parent="MenuContainer/SettingsContainer/VBoxContainer"]
+margin_top = 88.0
 margin_right = 112.0
-margin_bottom = 88.0
+margin_bottom = 92.0
 
-[node name="ContinueButton" type="Button" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 96.0
+[node name="ContinueButton" type="Button" parent="MenuContainer/SettingsContainer/VBoxContainer"]
+margin_top = 100.0
 margin_right = 112.0
-margin_bottom = 114.0
+margin_bottom = 120.0
 mouse_default_cursor_shape = 2
 text = "Continue"
 
-[node name="QuitButton" type="Button" parent="MenuContainer/CenterContainer/VBoxContainer"]
-margin_top = 122.0
+[node name="QuitButton" type="Button" parent="MenuContainer/SettingsContainer/VBoxContainer"]
+margin_top = 128.0
 margin_right = 112.0
-margin_bottom = 140.0
+margin_bottom = 148.0
 mouse_default_cursor_shape = 2
 text = "Quit"
 
@@ -248,7 +248,7 @@ anims/fade_in = SubResource( 4 )
 anims/fade_out = SubResource( 6 )
 
 [connection signal="pressed" from="MarginContainer/Top/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="value_changed" from="MenuContainer/CenterContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_changed"]
-[connection signal="value_changed" from="MenuContainer/CenterContainer/VBoxContainer/EffectsVolume" to="." method="_on_effects_volume_changed"]
-[connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
+[connection signal="value_changed" from="MenuContainer/SettingsContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_changed"]
+[connection signal="value_changed" from="MenuContainer/SettingsContainer/VBoxContainer/EffectsVolume" to="." method="_on_effects_volume_changed"]
+[connection signal="pressed" from="MenuContainer/SettingsContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MenuContainer/SettingsContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
