@@ -2,7 +2,7 @@
 
 [ext_resource path="res://weapon/textures/watering_can.png" type="Texture" id=1]
 [ext_resource path="res://weapon/watering_can.gd" type="Script" id=2]
-[ext_resource path="res://audio/effects/throw.ogg" type="AudioStream" id=3]
+[ext_resource path="res://audio/assets/throw.ogg" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 6, 6 )

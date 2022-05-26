@@ -1,8 +1,8 @@
 extends Control
 
-const map_scene: = preload("res://map/map.tscn")
+const stage_scene: = preload("res://map/stage.tscn")
 
-onready var map: Node2D
+onready var stage: Node2D
 onready var menu: Control = $ViewportContainer/Viewport/CanvasLayer/Menu
 onready var music: AudioStreamPlayer = $BackgroundMusic
 onready var viewport_container: Control = $ViewportContainer
@@ -19,19 +19,16 @@ func _ready() -> void:
 	call_deferred("add_map")
 
 func add_map() -> void:
-	map = map_scene.instance()
-	map.connect("player_collect", self, "_on_map_player_collect")
-	map.connect("planted", self, "_on_map_planted")
-	viewport.add_child(map)
+	stage = stage_scene.instance()
+	stage.connect("player_collect", self, "_on_map_player_collect")
+	stage.connect("planted", self, "_on_map_planted")
+	viewport.add_child(stage)
 
-	menu.pots_count = map.pots_count
+	menu.pots_count = stage.pots_count
 
-	var camera: Camera2D = map.player.camera
-	var rect: Rect2 = map.get_used_rect()
-	camera.limit_left = rect.position.x
-	camera.limit_right = rect.end.x
-	camera.limit_top = rect.position.y
-	camera.limit_bottom = rect.end.y
+	var camera: Camera2D = stage.player.camera
+	var rect: Rect2 = stage.get_used_rect()
+	stage.player.set_camera_limits(rect)
 
 func reset() -> void:
 	menu.parts_count = 0
@@ -55,14 +52,14 @@ func _on_map_planted(plants_count: int, finished: bool) -> void:
 	if finished:
 		load_next_map()
 
-# TODO: implement loading next map
+# TODO: implement loading next stage
 func load_next_map() -> void:
 		tween.interpolate_property(viewport_container, "modulate", Color.white, Color.black, 0.5, Tween.TRANS_SINE, Tween.EASE_OUT)
 		tween.interpolate_property(self, "music_volume", 1.0, 0.0, 0.5, Tween.TRANS_SINE, Tween.EASE_OUT)
 		tween.start()
 		yield(tween, "tween_completed")
 
-		map.queue_free()
+		stage.queue_free()
 		reset()
 		add_map()
 

@@ -3,8 +3,8 @@
 [ext_resource path="res://player/textures/player.png" type="Texture" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
 [ext_resource path="res://weapon/watering_can.tscn" type="PackedScene" id=3]
-[ext_resource path="res://audio/effects/collect.ogg" type="AudioStream" id=4]
-[ext_resource path="res://audio/effects/death_player.ogg" type="AudioStream" id=5]
+[ext_resource path="res://audio/assets/collect.ogg" type="AudioStream" id=4]
+[ext_resource path="res://audio/assets/death_player.ogg" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2.5, 3 )

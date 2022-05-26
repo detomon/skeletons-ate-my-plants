@@ -47,9 +47,7 @@ func _on_interaction_area_entered(area: Area2D) -> void:
 	if is_death():
 		return
 
-	var container: = area.owner
-	if not container:
-		container = area
+	var container: = area.owner if area.owner else area
 
 	if container.is_in_group("enemy"):
 		energy -= container.DAMAGE
@@ -87,3 +85,9 @@ func plant(count: int) -> void:
 	if can_plant(count):
 		parts_count -= count
 		emit_signal("collect", parts_count)
+
+func set_camera_limits(rect: Rect2) -> void:
+	camera.limit_left = rect.position.x
+	camera.limit_right = rect.end.x
+	camera.limit_top = rect.position.y
+	camera.limit_bottom = rect.end.y

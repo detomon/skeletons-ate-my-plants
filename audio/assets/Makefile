@@ -1,4 +1,4 @@
-BLIP_FILES = $(wildcard *.blip) $(wildcard effects/*.blip)
+BLIP_FILES = $(wildcard *.blip)
 
 %.ogg: %.blip
 	bliplay -o $@.wav $<
