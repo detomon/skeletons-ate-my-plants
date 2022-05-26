@@ -3,6 +3,8 @@ extends Node2D
 signal player_collect(parts_count)
 signal planted(plants_count, finished)
 
+export var stage_name: = "Stage"
+
 onready var player: Node2D = $TileMap/Player
 onready var player_start: Node2D = $TileMap/PlayerStart
 onready var map: Node2D = $TileMap

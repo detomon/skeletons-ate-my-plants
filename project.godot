@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="The GameDev.tv Game Jam 2022"
+config/name="Skeletons Ate My Plants"
 run/main_scene="res://map/main.tscn"
 boot_splash/image="res://ui/textures/splash.png"
 boot_splash/use_filter=false

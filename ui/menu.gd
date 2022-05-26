@@ -40,7 +40,8 @@ func _get_bus_index(bus_name: String) -> int:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		pause_or_unpause()
+		if visible:
+			pause_or_unpause()
 
 func pause_or_unpause() -> void:
 	var tree: = get_tree()
