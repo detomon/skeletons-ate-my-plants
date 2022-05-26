@@ -265,7 +265,7 @@ position = Vector2( 9, -6 )
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 140
+collision_mask = 132
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]

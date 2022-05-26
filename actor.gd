@@ -13,7 +13,7 @@ var velocity: = Vector2.ZERO
 func _ready() -> void:
 	animation_tree.active = true
 
-func _handle_walking(direction: Vector2) -> void:
+func _handle_walking(direction: Vector2, delta: float) -> void:
 	var speed: = _get_speed()
 	velocity = velocity.linear_interpolate(direction * speed, VELOCITY_INTERP)
 	velocity = move_and_slide(velocity)

@@ -12,6 +12,8 @@ onready var camera: Camera2D = $Camera2D
 var parts_count: = 0
 
 func _process(delta: float) -> void:
+	direction = Vector2.ZERO
+
 	if is_death():
 		return
 
@@ -19,10 +21,12 @@ func _process(delta: float) -> void:
 	var up: = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 
 	direction = Vector2(left, up).normalized()
-	_handle_walking(direction)
 
-func _handle_walking(direction: Vector2) -> void:
-	._handle_walking(direction)
+func _physics_process(delta: float) -> void:
+	_handle_walking(direction, delta)
+
+func _handle_walking(direction: Vector2, delta: float) -> void:
+	._handle_walking(direction, delta)
 
 	if abs(direction.x) > 0.1:
 		sprite.scale.x = -1.0 if direction.x < 0.0 else 1.0

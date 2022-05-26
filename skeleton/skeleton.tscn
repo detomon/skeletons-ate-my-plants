@@ -187,6 +187,9 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -8 )
 hframes = 4
 
+[node name="ThrowPosition" type="Position2D" parent="Sprite"]
+position = Vector2( 2, -8 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( -0.5, -3 )
@@ -228,4 +231,8 @@ position = Vector2( -0.5, -6 )
 process_parent = true
 physics_process_parent = true
 
+[node name="ThrowTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_entered"]
+[connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]

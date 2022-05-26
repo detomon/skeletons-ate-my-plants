@@ -130,7 +130,7 @@ nodes/state/node = SubResource( 4 )
 nodes/state/position = Vector2( 240, 140 )
 node_connections = [ "state", 0, "idle_anim", "state", 1, "spin_anim", "output", 0, "state" ]
 
-[node name="WateringCan" type="Node2D" groups=["projectile"]]
+[node name="WateringCan" type="Node2D" groups=["weapon"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
