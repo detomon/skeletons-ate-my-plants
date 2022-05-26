@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ui/shaders/abberation.gdshader" type="Shader" id=1]
 [ext_resource path="res://map/main.gd" type="Script" id=2]
 [ext_resource path="res://ui/theme.tres" type="Theme" id=3]
 [ext_resource path="res://env.tres" type="Environment" id=4]
 [ext_resource path="res://audio/assets/music.ogg" type="AudioStream" id=5]
+[ext_resource path="res://audio/assets/victory.ogg" type="AudioStream" id=6]
 [ext_resource path="res://ui/menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/shaders/vignette.gdshader" type="Shader" id=8]
 
@@ -60,19 +61,18 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="StageNameContainer" type="CenterContainer" parent="ViewportContainer/Viewport"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="StageName" type="Label" parent="ViewportContainer/Viewport/StageNameContainer"]
-margin_left = 160.0
+margin_left = 172.0
 margin_top = 97.0
-margin_right = 240.0
+margin_right = 228.0
 margin_bottom = 127.0
 theme = ExtResource( 3 )
 text = "STAGE 1
 
-Who Ate My Plants?"
+Title"
 align = 1
 
 [node name="Tween" type="Tween" parent="."]
@@ -80,6 +80,11 @@ align = 1
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 pause_mode = 1
 stream = ExtResource( 5 )
+bus = "Music"
+
+[node name="VictoryMusic" type="AudioStreamPlayer" parent="."]
+pause_mode = 1
+stream = ExtResource( 6 )
 bus = "Music"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

@@ -8,6 +8,7 @@ onready var stage: Node2D
 onready var menu_container: Control = $ViewportContainer/Viewport/CanvasLayer/MenuContainer
 onready var menu: Control = $ViewportContainer/Viewport/CanvasLayer/MenuContainer/Menu
 onready var music: AudioStreamPlayer = $BackgroundMusic
+onready var victory_music: AudioStreamPlayer = $VictoryMusic
 onready var game_container: Control = $ViewportContainer/Viewport/GameContainer
 onready var viewport: Viewport = $ViewportContainer/Viewport
 onready var stage_name_container: Control = $ViewportContainer/Viewport/StageNameContainer
@@ -21,8 +22,8 @@ func _ready() -> void:
 	stage_name_container.visible = false
 	call_deferred("load_next_map")
 
-func _instance_stage(scene: PackedScene) -> void:
-	stage = scene.instance()
+func _add_stage(new_state: Node2D) -> void:
+	stage = new_state
 	stage.connect("player_collect", self, "_on_map_player_collect")
 	stage.connect("planted", self, "_on_map_planted")
 	game_container.add_child(stage)
@@ -43,8 +44,8 @@ func unload_stage() -> void:
 	if stage:
 		stage.queue_free()
 
-func load_stage(scene: PackedScene) -> void:
-	_instance_stage(scene)
+func load_stage(new_stage: Node2D) -> void:
+	_add_stage(new_stage)
 	reset()
 
 	menu.visible = true # hidden in stage outro
@@ -58,10 +59,16 @@ func load_stage(scene: PackedScene) -> void:
 func finish_stage() -> void:
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		enemy.queue_free()
+	for projectile in get_tree().get_nodes_in_group("projectile"):
+		projectile.queue_free()
 
 	music.stop()
 	menu.visible = false
-	yield(get_tree().create_timer(2.0), "timeout")
+
+	yield(get_tree().create_timer(0.5), "timeout")
+	victory_music.play()
+	yield(victory_music, "finished")
+	yield(get_tree().create_timer(1.0), "timeout")
 
 	load_next_map()
 
@@ -89,11 +96,16 @@ func _on_map_planted(plants_count: int, finished: bool) -> void:
 func load_next_map() -> void:
 	yield(unload_stage(), "completed")
 	yield(get_tree().create_timer(1.0), "timeout")
+
+	stage = stage_scene.instance()
+	stage_name.text = "STAGE %d\n\n%s" % [stage.stage_number, stage.stage_name]
 	stage_name_container.visible = true
+
 	yield(get_tree().create_timer(3.0), "timeout")
 	stage_name_container.visible = false
+
 	yield(get_tree().create_timer(0.5), "timeout")
-	yield(load_stage(stage_scene), "completed")
+	yield(load_stage(stage), "completed")
 
 func _notification(what: int) -> void:
 	match what:

@@ -11,7 +11,7 @@
 [node name="Stage" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 3 )
-stage_name = "The Garden"
+stage_name = "Who Ate My Plants?"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 5 )
