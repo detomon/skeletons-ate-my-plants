@@ -1,4 +1,4 @@
-extends "res://actor.gd"
+extends "res://player/actor.gd"
 
 const DAMAGE: = 1.0
 const part_scene: PackedScene = preload("skeleton_part.tscn")

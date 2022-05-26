@@ -176,7 +176,7 @@ nodes/hit_anim/position = Vector2( 380, 380 )
 nodes/output/position = Vector2( 780, 160 )
 nodes/walk/node = SubResource( 4 )
 nodes/walk/position = Vector2( 160, 160 )
-node_connections = [ "hit", 0, "death", "hit", 1, "hit_anim", "death", 0, "walk", "death", 1, "death_anim", "output", 0, "hit" ]
+node_connections = [ "output", 0, "hit", "death", 0, "walk", "death", 1, "death_anim", "hit", 0, "death", "hit", 1, "hit_anim" ]
 
 [node name="Skeleton" type="KinematicBody2D" groups=["enemy"]]
 script = ExtResource( 2 )

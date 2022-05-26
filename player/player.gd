@@ -1,4 +1,4 @@
-extends "res://actor.gd"
+extends "res://player/actor.gd"
 
 signal collect(node, parts_count)
 
