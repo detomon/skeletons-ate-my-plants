@@ -44,7 +44,7 @@ class Category:
 	func set_color(val):
 		color = val
 		emit_signal("changed")
-	
+
 	func _init(title: String, color: Color):
 		self.title = title
 		self.color = color
@@ -63,7 +63,7 @@ func setup_shortcuts():
 	else:
 		delete.scancode = KEY_DELETE
 	shortcut_delete.shortcut = delete
-	
+
 	# duplicate
 	var dupe = InputEventKey.new()
 	if OS.get_name() == "OSX":
@@ -73,7 +73,7 @@ func setup_shortcuts():
 		dupe.scancode = KEY_D
 		dupe.control = true
 	shortcut_duplicate.shortcut = dupe
-	
+
 	# new
 	var new = InputEventKey.new()
 	if OS.get_name() == "OSX":
@@ -83,12 +83,12 @@ func setup_shortcuts():
 		new.scancode = KEY_A
 		new.control = true
 	shortcut_new.shortcut = new
-	
+
 	# rename
 	var rename = InputEventKey.new()
 	rename.scancode = KEY_F2
 	shortcut_rename.shortcut = rename
-	
+
 	# search
 	var search = InputEventKey.new()
 	if OS.get_name() == "OSX":
@@ -98,28 +98,28 @@ func setup_shortcuts():
 		search.scancode = KEY_F
 		search.control = true
 	shortcut_search.shortcut = search
-	
+
 	# confirm
 	var confirm = InputEventKey.new()
 	confirm.scancode = KEY_ENTER
 	shortcut_confirm.shortcut = confirm
-	
+
 
 func _ready():
 	setup_shortcuts()
 	setup_board()
-	
+
 	search_bar.connect("text_changed", self, "__on_filter_changed")
 	search_bar.connect("text_entered", self, "__on_filter_entered")
 	button_search_details.connect("toggled", self, "__on_filter_changed")
 	button_help.connect("pressed", self, "__on_documentation_button_clicked")
 	button_settings.connect("pressed", self, "__on_settings_button_clicked")
-	
+
 	connect("categories_changed", self, "save_data")
 	connect("tasks_changed", self, "save_data")
 	connect("columns_changed", self, "save_data")
 	connect("stages_changed", self, "save_data")
-	
+
 	notification(NOTIFICATION_THEME_CHANGED)
 
 func get_details_dialog():
@@ -142,7 +142,7 @@ func delete_category(cat):
 func _unhandled_key_input(event):
 	if not can_handle_shortcut(self):
 		return
-		
+
 	if not event.is_echo() and event.is_pressed() and shortcut_search.is_shortcut(event):
 		search_bar.grab_focus()
 		get_tree().set_input_as_handled()
@@ -220,33 +220,33 @@ func load_data()->Dictionary:
 	var res = file.open(save_path, File.READ)
 	if res != OK:
 		return default_data()
-	
+
 	res = JSON.parse(file.get_as_text())
 	if res.error != OK:
 		return default_data()
 	file.close()
-	
+
 	res = res.result
-	
+
 	for category in res["categories"]:
 		category["color"] = Color(category["color"])
-	
+
 	for task in res["tasks"]:
 		task["category"] = int(task["category"])
-	
+
 	for stage in res["stages"]:
 		var tasks_i = []
 		for t in stage["tasks"]:
 			tasks_i.append(int(t))
 		stage["tasks"] = tasks_i
-	
+
 	for column in res["columns"]:
 		var stages_i = []
 		for t in column["stages"]:
 			stages_i.append(int(t))
 		column["stages"] = stages_i
-		
-	
+
+
 	return res
 
 func default_data():
@@ -301,45 +301,45 @@ func serialze():
 
 func save_data():
 	var data = serialze()
-	
+
 	var file := File.new()
 	var res = file.open(save_path, File.WRITE)
 	if res != OK:
 		push_warning("Could not save board data.")
-	
+
 	var string = JSON.print(data, "  ")
-	
+
 	file.store_string(string)
 	file.close()
 
 func setup_board():
 	clear_board()
 	var data = load_data()
-	
+
 	for c in data["categories"]:
 		construct_category(c["title"],
 				c["color"])
-	
+
 	for t in data["tasks"]:
 		construct_task(
 			t["title"],
 			t["details"],
 			categories[t["category"]])
-		
+
 	for s in data["stages"]:
 		construct_stage(
 			s["title"],
 			s["tasks"])
-		
+
 	for c in data["columns"]:
 		var column = construct_column(c["stages"])
 		column_holder.add_child(column)
-	
+
 	emit_signal("categories_changed")
 	emit_signal("columns_changed")
 	emit_signal("stages_changed")
 	emit_signal("tasks_changed")
-		
+
 func _notification(what):
 	match(what):
 		NOTIFICATION_THEME_CHANGED:

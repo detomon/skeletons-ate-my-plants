@@ -176,7 +176,7 @@ nodes/hit_anim/position = Vector2( 380, 380 )
 nodes/output/position = Vector2( 780, 160 )
 nodes/walk/node = SubResource( 4 )
 nodes/walk/position = Vector2( 160, 160 )
-node_connections = [ "death", 0, "walk", "death", 1, "death_anim", "hit", 0, "death", "hit", 1, "hit_anim", "output", 0, "hit" ]
+node_connections = [ "hit", 0, "death", "hit", 1, "hit_anim", "death", 0, "walk", "death", 1, "death_anim", "output", 0, "hit" ]
 
 [node name="Skeleton" type="KinematicBody2D" groups=["enemy"]]
 script = ExtResource( 2 )
@@ -222,5 +222,10 @@ parameters/walk/blend_position = 0.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 bus = "Effects"
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -0.5, -6 )
+process_parent = true
+physics_process_parent = true
 
 [connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_entered"]

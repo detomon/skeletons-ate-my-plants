@@ -11,6 +11,7 @@ var pots_count: = 0
 var plants_count: = 0
 
 func _ready() -> void:
+	pause_mode = Node.PAUSE_MODE_STOP
 	pots_count = _count_pots()
 
 func _count_pots() -> int:

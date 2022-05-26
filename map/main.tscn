@@ -22,6 +22,7 @@ shader_param/box_radius = 0.394
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 theme = ExtResource( 3 )
 script = ExtResource( 2 )
 
@@ -29,6 +30,7 @@ script = ExtResource( 2 )
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 stretch = true
 stretch_shrink = 3
 
@@ -46,6 +48,7 @@ render_target_update_mode = 3
 material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0, 0, 0, 0.360784 )
 
 [node name="Menu" parent="ViewportContainer/Viewport/CanvasLayer" instance=ExtResource( 7 )]

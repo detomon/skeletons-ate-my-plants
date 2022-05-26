@@ -42,3 +42,9 @@ func _on_damage_area_entered(area: Area2D) -> void:
 				_die()
 			else:
 				animation_tree.set("parameters/hit/active", true)
+
+func _on_screen_entered() -> void:
+	print("_on_screen_entered")
+
+func _on_screen_exited() -> void:
+	print("_on_screen_exited")

@@ -4,7 +4,7 @@ signal collect(node, parts_count)
 
 onready var sprite: Sprite = $Sprite
 onready var weapon: Node2D = $Sprite/WeaponPosition/WateringCan
-onready var weapon_return_target: Node2D = $Sprite/WeaponPosition
+onready var weapon_position: Node2D = $Sprite/WeaponPosition
 onready var collect_audio: AudioStreamPlayer = $CollectAudio
 onready var interaction_area: Area2D = $InteractionArea
 onready var camera: Camera2D = $Camera2D
@@ -27,7 +27,7 @@ func _handle_walking(direction: Vector2) -> void:
 	if abs(direction.x) > 0.1:
 		sprite.scale.x = -1.0 if direction.x < 0.0 else 1.0
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if is_death():
 		return
 
@@ -41,7 +41,13 @@ func _input(event: InputEvent) -> void:
 			# use facing direction when stading
 			throw_dir = sprite.global_transform.basis_xform(Vector2.RIGHT)
 
-		weapon.throw(throw_dir, weapon_return_target)
+		weapon.throw(throw_dir, weapon_position)
+
+	elif event.is_action_pressed("click_left"):
+		var local_event: = make_input_local(event)
+		var throw_dir: Vector2 = local_event.position
+
+		weapon.throw(throw_dir, weapon_position)
 
 func _on_interaction_area_entered(area: Area2D) -> void:
 	if is_death():
