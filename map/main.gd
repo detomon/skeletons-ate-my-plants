@@ -1,6 +1,10 @@
 extends Control
 
-const stage_scene: = preload("res://map/stage.tscn")
+const SCENES: = [
+	"res://map/stage_1.tscn",
+	"res://map/stage_2.tscn",
+]
+
 const SCENE_FADE_COLOR: = Color(0.75, 0.0, 0.0, 0.0)
 const FADE_TIME: = 0.5
 
@@ -14,6 +18,8 @@ onready var viewport: Viewport = $ViewportContainer/Viewport
 onready var stage_name_container: Control = $ViewportContainer/Viewport/StageNameContainer
 onready var stage_name: Label = $ViewportContainer/Viewport/StageNameContainer/StageName
 onready var tween: Tween = $Tween
+
+var scene_index: = 0
 
 func _ready() -> void:
 	game_container.modulate = SCENE_FADE_COLOR
@@ -97,7 +103,10 @@ func load_next_map() -> void:
 	yield(unload_stage(), "completed")
 	yield(get_tree().create_timer(1.0), "timeout")
 
+	var stage_scene: PackedScene = load(SCENES[scene_index])
 	stage = stage_scene.instance()
+	scene_index = wrapi(scene_index + 1, 0, len(SCENES))
+
 	stage_name.text = "STAGE %d\n\n%s" % [stage.stage_number, stage.stage_name]
 	stage_name_container.visible = true
 

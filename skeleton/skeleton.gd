@@ -4,6 +4,8 @@ const DAMAGE: = 1.0
 const part_scene: PackedScene = preload("skeleton_part.tscn")
 const bone_scene: PackedScene = preload("bone.tscn")
 
+export var throws_bones: = false
+
 onready var sprite: = $Sprite
 onready var throw_position: = $Sprite/ThrowPosition
 onready var part_position: = $PartPosition
@@ -67,6 +69,6 @@ func _on_screen_exited() -> void:
 	print("_on_screen_exited")
 
 func _on_throw_timer_timeout() -> void:
-	if not is_death():
+	if not is_death() and throws_bones:
 		if rand_range(0.0, 1.0) < 0.2:
 			_throw()
