@@ -25,17 +25,17 @@ margin_right = 300.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 300, 0 )
 bbcode_enabled = true
-bbcode_text = "Skeletons ate your plants! [img]res://ui/icons/skeleton.png[/img]
+bbcode_text = "Skeletons [img]res://ui/icons/skeleton.png[/img] ate your plants! [img]res://ui/icons/plant.png[/img]
 
-Now you have to destroy them with the help of your trusty watering can and regrow your plants.
+Now you have to destroy them with the help of your trusty watering can [img]res://ui/icons/watering_can.png[/img] and regrow your plants.
 
-[center][img]res://ui/icons/pot.png[/img][/center]
+[center][img]res://plant/textures/pot.png[/img][img]res://plant/textures/pot.png[/img][img]res://plant/textures/pot.png[/img][/center]
 
 - Move with WASD or Arrow Keys
 - Shoot with Space, Shift or Mouse"
-text = "Skeletons ate your plants! 
+text = "Skeletons  ate your plants! 
 
-Now you have to destroy them with the help of your trusty watering can and regrow your plants.
+Now you have to destroy them with the help of your trusty watering can  and regrow your plants.
 
 
 
