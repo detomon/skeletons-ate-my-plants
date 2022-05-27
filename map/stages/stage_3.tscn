@@ -37,10 +37,10 @@ parts_needed = 4
 position = Vector2( 567, 137 )
 
 [node name="Skeleton4" parent="TileMap" instance=ExtResource( 4 )]
-position = Vector2( -181, 328 )
+position = Vector2( -111, 283 )
 
 [node name="Skeleton5" parent="TileMap" instance=ExtResource( 4 )]
-position = Vector2( -286, 317 )
+position = Vector2( -218, 317 )
 
 [node name="Skeleton6" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( -232, 48 )
@@ -61,10 +61,10 @@ position = Vector2( -319, 224 )
 position = Vector2( -364, 180 )
 
 [node name="Skeleton12" parent="TileMap" instance=ExtResource( 4 )]
-position = Vector2( -86, 315 )
+position = Vector2( -53, 336 )
 
 [node name="Skeleton13" parent="TileMap" instance=ExtResource( 4 )]
-position = Vector2( -377, 275 )
+position = Vector2( -332, 307 )
 
 [node name="Skeleton14" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 245, 57 )

@@ -12,11 +12,16 @@ onready var count_label: Control = $MissingPartsLabel/Container/Label
 onready var notice_timer: Timer = $NoticeTimer
 
 var has_plant: = false
+var player: Node2D
 
 func _ready() -> void:
 	missing_parts_label.visible = false
 	arrow_sprite.visible = true
 	count_label.text = "×%d" % parts_needed
+
+func _process(_delta: float) -> void:
+	if player:
+		try_plant(player)
 
 func plant() -> void:
 	if has_plant:
@@ -37,6 +42,8 @@ func try_plant(body: Node2D) -> bool:
 			body.plant(parts_needed)
 			plant()
 
+			player = null
+
 			return true
 		else:
 			missing_parts_label.visible = true
@@ -52,11 +59,11 @@ func hide_labels() -> void:
 
 func _on_interaction_area_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-		try_plant(body)
+		player = body
 
 func _on_interaction_area_body_exited(body: Node) -> void:
 	if body.is_in_group("player"):
-		pass
+		player = null
 
 func _on_button_pressed() -> void:
 	try_plant(owner.player)
