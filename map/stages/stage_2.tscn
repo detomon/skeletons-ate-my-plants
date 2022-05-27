@@ -39,14 +39,12 @@ parts_needed = 6
 
 [node name="Skeleton1" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 522, 314 )
-throws_bones = true
 
 [node name="Skeleton2" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 411, 97 )
 
 [node name="Skeleton3" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 604, 349 )
-throws_bones = true
 
 [node name="Skeleton4" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 612, 270 )
@@ -56,52 +54,42 @@ position = Vector2( 530, 254 )
 
 [node name="Skeleton6" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 597, 48 )
-throws_bones = true
 
 [node name="Skeleton7" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 602, 123 )
-throws_bones = true
 
 [node name="Skeleton8" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 542, 147 )
-throws_bones = true
 
 [node name="Skeleton9" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 472, 65 )
-throws_bones = true
 
 [node name="Skeleton10" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 384, 159 )
 
 [node name="Skeleton11" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 234, 40 )
-throws_bones = true
 
 [node name="Skeleton12" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 236, 184 )
-throws_bones = true
 
 [node name="Skeleton13" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 328, 346 )
-throws_bones = true
 
 [node name="Skeleton14" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 144, 280 )
 
 [node name="Skeleton15" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 323, 290 )
-throws_bones = true
 
 [node name="Skeleton16" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 165, 333 )
 
 [node name="Skeleton17" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 371, 265 )
-throws_bones = true
 
 [node name="Skeleton18" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 399, 344 )
-throws_bones = true
 
 [connection signal="collect" from="TileMap/Player" to="." method="_on_player_collect"]
 [connection signal="die" from="TileMap/Player" to="." method="_on_player_die"]

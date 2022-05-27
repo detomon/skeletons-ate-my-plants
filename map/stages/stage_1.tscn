@@ -9,7 +9,6 @@
 [node name="Stage" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 2 )
-stage_number = 1
 stage_name = "Who Ate My Plants?"
 
 [node name="TileMap" parent="." instance=ExtResource( 5 )]
@@ -38,33 +37,27 @@ position = Vector2( 379, 163 )
 
 [node name="Skeleton2" parent="TileMap" instance=ExtResource( 1 )]
 position = Vector2( 450, 177 )
-throws_bones = true
 
 [node name="Skeleton3" parent="TileMap" instance=ExtResource( 1 )]
 position = Vector2( 369, 54 )
-throws_bones = true
 
 [node name="Skeleton4" parent="TileMap" instance=ExtResource( 1 )]
 position = Vector2( 213, 41 )
-throws_bones = true
 
 [node name="Skeleton5" parent="TileMap" instance=ExtResource( 1 )]
 position = Vector2( 216, 193 )
-throws_bones = true
 
 [node name="Skeleton6" parent="TileMap" instance=ExtResource( 1 )]
 position = Vector2( 356, 107 )
 
 [node name="Skeleton7" parent="TileMap" instance=ExtResource( 1 )]
 position = Vector2( 432, 48 )
-throws_bones = true
 
 [node name="Skeleton8" parent="TileMap" instance=ExtResource( 1 )]
 position = Vector2( 260, 113 )
 
 [node name="Skeleton9" parent="TileMap" instance=ExtResource( 1 )]
 position = Vector2( 433, 94 )
-throws_bones = true
 
 [connection signal="collect" from="TileMap/Player" to="." method="_on_player_collect"]
 [connection signal="die" from="TileMap/Player" to="." method="_on_player_die"]

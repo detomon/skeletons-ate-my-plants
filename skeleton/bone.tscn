@@ -102,7 +102,7 @@ tracks/0/keys = {
 } ]
 }
 
-[node name="Bone" type="Node2D" groups=["enemy"]]
+[node name="Bone" type="Node2D" groups=["projectile"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

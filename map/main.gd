@@ -3,6 +3,7 @@ extends Control
 const SCENES: = [
 	"res://map/stages/stage_1.tscn",
 	"res://map/stages/stage_2.tscn",
+	"res://map/stages/stage_3.tscn",
 ]
 
 const FADE_COLOR: = Color(0.75, 0.0, 0.0, 0.0)
@@ -73,10 +74,8 @@ func load_stage(new_stage: Node2D) -> void:
 	music.play()
 
 func finish_stage() -> void:
-	for enemy in get_tree().get_nodes_in_group("enemy"):
-		enemy.queue_free()
-	for projectile in get_tree().get_nodes_in_group("projectile"):
-		projectile.queue_free()
+	stage.clear_enemies()
+	stage.clear_projectiles()
 
 	music.stop()
 	menu.visible = false

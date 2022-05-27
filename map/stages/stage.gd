@@ -3,7 +3,7 @@ extends Node2D
 signal player_collect(parts_count)
 signal planted(plants_count, finished)
 
-export var stage_number: = 21
+export var stage_number: = 1
 export var stage_name: = "Stage"
 
 onready var player: Node2D = $TileMap/Player
@@ -35,11 +35,20 @@ func _on_player_collect(parts_count: int) -> void:
 func reset_player() -> void:
 	player.global_position = player_start.global_position
 
+func clear_enemies() -> void:
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		enemy.queue_free()
+
+func clear_projectiles() -> void:
+	for projectile in get_tree().get_nodes_in_group("projectile"):
+		projectile.queue_free()
+
 func reset() -> void:
 	plants_count = 0
 	emit_signal("planted", plants_count)
 
 func _on_player_die() -> void:
+	clear_projectiles()
 	reset_player()
 
 func _on_pot_planted() -> void:

@@ -59,7 +59,7 @@ func _on_interaction_area_entered(area: Area2D) -> void:
 
 	var container: = area.owner if area.owner else area
 
-	if container.is_in_group("enemy"):
+	if container.is_in_group("enemy") or container.is_in_group("projectile"):
 		energy -= container.DAMAGE
 		if energy <= 0.0:
 			_die()
