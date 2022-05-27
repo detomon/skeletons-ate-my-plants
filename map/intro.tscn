@@ -48,10 +48,16 @@ margin_top = 128.0
 margin_right = 300.0
 margin_bottom = 132.0
 
-[node name="PlayButton" type="Button" parent="HelpContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HelpContainer/VBoxContainer"]
 margin_top = 140.0
 margin_right = 300.0
 margin_bottom = 160.0
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="HelpContainer/VBoxContainer/HBoxContainer"]
+margin_left = 119.0
+margin_right = 181.0
+margin_bottom = 20.0
 mouse_default_cursor_shape = 2
 text = "Play"
 
@@ -60,4 +66,4 @@ stream = ExtResource( 3 )
 volume_db = -5.0
 bus = "Effects"
 
-[connection signal="pressed" from="HelpContainer/VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HelpContainer/VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_pressed"]
