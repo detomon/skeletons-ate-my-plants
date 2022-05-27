@@ -67,7 +67,7 @@ position = Vector2( -53, 336 )
 position = Vector2( -332, 307 )
 
 [node name="Skeleton14" parent="TileMap" instance=ExtResource( 4 )]
-position = Vector2( 245, 57 )
+position = Vector2( 236, 266 )
 
 [node name="Skeleton17" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 382, 51 )

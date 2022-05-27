@@ -246,7 +246,7 @@ nodes/invincible/position = Vector2( 640, 160 )
 nodes/output/position = Vector2( 840, 160 )
 nodes/walk/node = SubResource( 4 )
 nodes/walk/position = Vector2( 160, 160 )
-node_connections = [ "death", 0, "walk", "death", 1, "death_anim", "invincible", 0, "death", "invincible", 1, "blink_anim", "output", 0, "invincible" ]
+node_connections = [ "invincible", 0, "death", "invincible", 1, "blink_anim", "death", 0, "walk", "death", 1, "death_anim", "output", 0, "invincible" ]
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_mask = 9

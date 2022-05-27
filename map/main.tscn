@@ -97,4 +97,3 @@ environment = ExtResource( 4 )
 
 [connection signal="play" from="ViewportContainer/Viewport/CanvasLayer/Intro" to="." method="_on_intro_play"]
 [connection signal="play" from="ViewportContainer/Viewport/CanvasLayer/Outro" to="." method="_on_outro_play"]
-[connection signal="quit" from="ViewportContainer/Viewport/CanvasLayer/Outro" to="ViewportContainer/Viewport/CanvasLayer/MenuContainer/Menu" method="_on_quit_pressed"]
