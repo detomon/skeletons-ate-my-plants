@@ -176,9 +176,10 @@ nodes/hit_anim/position = Vector2( 380, 380 )
 nodes/output/position = Vector2( 780, 160 )
 nodes/walk/node = SubResource( 4 )
 nodes/walk/position = Vector2( 160, 160 )
-node_connections = [ "output", 0, "hit", "death", 0, "walk", "death", 1, "death_anim", "hit", 0, "death", "hit", 1, "hit_anim" ]
+node_connections = [ "death", 0, "walk", "death", 1, "death_anim", "hit", 0, "death", "hit", 1, "hit_anim", "output", 0, "hit" ]
 
 [node name="Skeleton" type="KinematicBody2D" groups=["enemy"]]
+collision_layer = 0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -186,6 +187,7 @@ position = Vector2( 0, 2 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -8 )
 hframes = 4
+frame = 3
 
 [node name="ThrowPosition" type="Position2D" parent="Sprite"]
 position = Vector2( 2, -8 )
@@ -207,6 +209,18 @@ shape = SubResource( 17 )
 [node name="PartPosition" type="Position2D" parent="."]
 position = Vector2( -0.5, 0 )
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -0.5, -6 )
+process_parent = true
+physics_process_parent = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -20, 0 )
+
+[node name="ThrowTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 5 )
 anims/death = SubResource( 11 )
@@ -225,14 +239,6 @@ parameters/walk/blend_position = 0.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 bus = "Effects"
-
-[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
-position = Vector2( -0.5, -6 )
-process_parent = true
-physics_process_parent = true
-
-[node name="ThrowTimer" type="Timer" parent="."]
-autostart = true
 
 [connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_entered"]
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]

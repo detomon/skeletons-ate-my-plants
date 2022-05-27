@@ -246,9 +246,10 @@ nodes/invincible/position = Vector2( 640, 160 )
 nodes/output/position = Vector2( 840, 160 )
 nodes/walk/node = SubResource( 4 )
 nodes/walk/position = Vector2( 160, 160 )
-node_connections = [ "death", 0, "walk", "death", 1, "death_anim", "output", 0, "invincible", "invincible", 0, "death", "invincible", 1, "blink_anim" ]
+node_connections = [ "death", 0, "walk", "death", 1, "death_anim", "invincible", 0, "death", "invincible", 1, "blink_anim", "output", 0, "invincible" ]
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
+collision_mask = 9
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -278,6 +279,11 @@ visible = false
 position = Vector2( -0.5, -3 )
 shape = SubResource( 13 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/blink = SubResource( 14 )
@@ -301,10 +307,5 @@ bus = "Effects"
 [node name="CollectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 bus = "Effects"
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
 
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_entered"]

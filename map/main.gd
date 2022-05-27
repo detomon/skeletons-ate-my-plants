@@ -143,10 +143,11 @@ func load_next_map() -> void:
 		outro.visible = true
 		fade_in(outro)
 
-func _notification(what: int) -> void:
-	match what:
-		NOTIFICATION_WM_FOCUS_OUT:
-			menu.set_paused(true)
+# Don't
+#func _notification(what: int) -> void:
+#	match what:
+#		NOTIFICATION_WM_FOCUS_OUT:
+#			menu.set_paused(true)
 
 func _on_intro_play() -> void:
 	if tween.is_active():
