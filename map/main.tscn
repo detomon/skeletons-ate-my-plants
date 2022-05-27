@@ -57,16 +57,11 @@ color = Color( 0, 0, 0, 0.360784 )
 
 [node name="Menu" parent="ViewportContainer/Viewport/CanvasLayer/MenuContainer" instance=ExtResource( 7 )]
 
-[node name="GameContainer" type="Control" parent="ViewportContainer/Viewport"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-
-[node name="StageNameContainer" type="CenterContainer" parent="ViewportContainer/Viewport"]
+[node name="StageNameContainer" type="CenterContainer" parent="ViewportContainer/Viewport/CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="StageName" type="Label" parent="ViewportContainer/Viewport/StageNameContainer"]
+[node name="StageName" type="Label" parent="ViewportContainer/Viewport/CanvasLayer/StageNameContainer"]
 margin_left = 172.0
 margin_top = 94.0
 margin_right = 228.0
@@ -77,11 +72,13 @@ text = "STAGE 1
 Title"
 align = 1
 
-[node name="Intro" parent="ViewportContainer/Viewport" instance=ExtResource( 9 )]
+[node name="Intro" parent="ViewportContainer/Viewport/CanvasLayer" instance=ExtResource( 9 )]
 visible = false
 
-[node name="Outro" parent="ViewportContainer/Viewport" instance=ExtResource( 10 )]
+[node name="Outro" parent="ViewportContainer/Viewport/CanvasLayer" instance=ExtResource( 10 )]
 visible = false
+
+[node name="GameContainer" type="Node2D" parent="ViewportContainer/Viewport"]
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -98,5 +95,5 @@ bus = "Music"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 4 )
 
-[connection signal="play" from="ViewportContainer/Viewport/Intro" to="." method="_on_intro_play"]
-[connection signal="play" from="ViewportContainer/Viewport/Outro" to="." method="_on_outro_play"]
+[connection signal="play" from="ViewportContainer/Viewport/CanvasLayer/Intro" to="." method="_on_intro_play"]
+[connection signal="play" from="ViewportContainer/Viewport/CanvasLayer/Outro" to="." method="_on_outro_play"]

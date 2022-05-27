@@ -1,8 +1,8 @@
 extends Control
 
 const SCENES: = [
-	"res://map/stage_1.tscn",
-	"res://map/stage_2.tscn",
+	"res://map/stages/stage_1.tscn",
+	"res://map/stages/stage_2.tscn",
 ]
 
 const FADE_COLOR: = Color(0.75, 0.0, 0.0, 0.0)
@@ -11,14 +11,14 @@ const FADE_TIME: = 0.5
 onready var stage: Node2D
 onready var menu_container: Control = $ViewportContainer/Viewport/CanvasLayer/MenuContainer
 onready var menu: Control = $ViewportContainer/Viewport/CanvasLayer/MenuContainer/Menu
-onready var intro: Control = $ViewportContainer/Viewport/Intro
-onready var outro: Control = $ViewportContainer/Viewport/Outro
+onready var intro: Control = $ViewportContainer/Viewport/CanvasLayer/Intro
+onready var outro: Control = $ViewportContainer/Viewport/CanvasLayer/Outro
 onready var music: AudioStreamPlayer = $BackgroundMusic
 onready var victory_music: AudioStreamPlayer = $VictoryMusic
-onready var game_container: Control = $ViewportContainer/Viewport/GameContainer
+onready var game_container: Node2D = $ViewportContainer/Viewport/GameContainer
 onready var viewport: Viewport = $ViewportContainer/Viewport
-onready var stage_name_container: Control = $ViewportContainer/Viewport/StageNameContainer
-onready var stage_name: Label = $ViewportContainer/Viewport/StageNameContainer/StageName
+onready var stage_name_container: Control = $ViewportContainer/Viewport/CanvasLayer/StageNameContainer
+onready var stage_name: Label = $ViewportContainer/Viewport/CanvasLayer/StageNameContainer/StageName
 onready var tween: Tween = $Tween
 
 var scene_index: = 0
@@ -149,10 +149,16 @@ func _notification(what: int) -> void:
 			menu.set_paused(true)
 
 func _on_intro_play() -> void:
+	if tween.is_active():
+		return
+
 	yield(fade_out(intro), "completed")
 	load_next_map()
 
 func _on_outro_play() -> void:
+	if tween.is_active():
+		return
+
 	yield(fade_out(outro), "completed")
 	scene_index = 0
 	load_next_map()
