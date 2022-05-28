@@ -25,6 +25,11 @@ onready var tween: Tween = $Tween
 
 var scene_index: = 0
 
+var music_volume: = 1.0 setget set_music_volume
+func set_music_volume(value: float) -> void:
+	music_volume = value
+	music.volume_db = linear2db(music_volume)
+
 func _ready() -> void:
 	game_container.modulate = FADE_COLOR
 	menu_container.modulate = FADE_COLOR
@@ -72,14 +77,19 @@ func load_stage(new_stage: Node2D) -> void:
 	tween.start()
 	yield(tween, "tween_completed")
 
+	set_music_volume(1.0)
 	music.play()
 
 func finish_stage() -> void:
 	stage.clear_enemies()
 	stage.clear_projectiles()
 
-	music.stop()
 	menu.visible = false
+
+	tween.interpolate_property(self, "music_volume", music_volume, 0.0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween.start()
+	yield(tween, "tween_completed")
+	music.stop()
 
 	yield(get_tree().create_timer(0.5), "timeout")
 	victory_music.play()
