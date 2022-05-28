@@ -82,8 +82,13 @@ func _reset_energy() -> void:
 	energy = 1.0
 
 func collect(node: Node2D) -> void:
-	collect_audio.play()
+	if not node.visible:
+		return
+
+	node.visible = false
 	node.queue_free()
+
+	collect_audio.play()
 	parts_count += 1
 	emit_signal("collect", parts_count)
 
