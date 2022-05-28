@@ -4,6 +4,7 @@ const SCENES: = [
 	"res://map/stages/stage_1.tscn",
 	"res://map/stages/stage_2.tscn",
 	"res://map/stages/stage_3.tscn",
+	"res://map/stages/stage_4.tscn",
 ]
 
 const FADE_COLOR: = Color(0.75, 0.0, 0.0, 0.0)

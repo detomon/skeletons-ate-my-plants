@@ -17,7 +17,7 @@ var player: Node2D
 func _ready() -> void:
 	missing_parts_label.visible = false
 	arrow_sprite.visible = true
-	count_label.text = "×%d" % parts_needed
+	count_label.text = "x%d" % parts_needed
 
 func _process(_delta: float) -> void:
 	if player:

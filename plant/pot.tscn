@@ -219,7 +219,7 @@ margin_left = 8.0
 margin_right = 24.0
 margin_bottom = 8.0
 theme = ExtResource( 4 )
-text = "×0"
+text = "x0"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MissingPartsLabel/Container"]
 autoplay = "blink"
