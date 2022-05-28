@@ -202,22 +202,25 @@ mouse_filter = 2
 
 [node name="Container" type="HBoxContainer" parent="MissingPartsLabel"]
 visible = false
-margin_right = 16.0
-margin_bottom = 8.0
+margin_left = 1.0
+margin_top = -2.0
+margin_right = 23.0
+margin_bottom = 9.0
+grow_horizontal = 2
 mouse_filter = 2
 custom_constants/separation = 0
 
 [node name="PartsSprite" type="TextureRect" parent="MissingPartsLabel/Container"]
 margin_right = 8.0
-margin_bottom = 8.0
+margin_bottom = 11.0
 mouse_filter = 2
 texture = SubResource( 4 )
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="MissingPartsLabel/Container"]
 margin_left = 8.0
-margin_right = 24.0
-margin_bottom = 8.0
+margin_right = 22.0
+margin_bottom = 11.0
 theme = ExtResource( 4 )
 text = "x0"
 

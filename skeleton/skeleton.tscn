@@ -63,7 +63,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.15 ),
+"times": PoolRealArray( 0.14 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -176,7 +176,7 @@ nodes/hit_anim/position = Vector2( 380, 380 )
 nodes/output/position = Vector2( 780, 160 )
 nodes/walk/node = SubResource( 4 )
 nodes/walk/position = Vector2( 160, 160 )
-node_connections = [ "death", 0, "walk", "death", 1, "death_anim", "hit", 0, "death", "hit", 1, "hit_anim", "output", 0, "hit" ]
+node_connections = [ "output", 0, "hit", "hit", 0, "death", "hit", 1, "hit_anim", "death", 0, "walk", "death", 1, "death_anim" ]
 
 [node name="Skeleton" type="KinematicBody2D" groups=["enemy"]]
 collision_layer = 0
@@ -187,13 +187,11 @@ position = Vector2( 0, 2 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -8 )
 hframes = 4
-frame = 3
 
 [node name="ThrowPosition" type="Position2D" parent="Sprite"]
 position = Vector2( 2, -8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -0.5, -3 )
 shape = SubResource( 1 )
 
@@ -202,7 +200,6 @@ collision_layer = 6
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-visible = false
 position = Vector2( -0.5, -3.5 )
 shape = SubResource( 17 )
 

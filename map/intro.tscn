@@ -16,13 +16,13 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HelpContainer"]
 margin_left = 450.0
-margin_top = 257.0
+margin_top = 258.0
 margin_right = 750.0
 margin_bottom = 417.0
 
 [node name="Label" type="RichTextLabel" parent="HelpContainer/VBoxContainer"]
 margin_right = 300.0
-margin_bottom = 120.0
+margin_bottom = 118.0
 rect_min_size = Vector2( 300, 0 )
 bbcode_enabled = true
 bbcode_text = "Skeletons [img]res://ui/icons/skeleton.png[/img] ate your plants! [img]res://ui/icons/plant.png[/img]
@@ -44,20 +44,20 @@ Now you have to destroy them with the help of your trusty watering can  and regr
 fit_content_height = true
 
 [node name="HSeparator" type="HSeparator" parent="HelpContainer/VBoxContainer"]
-margin_top = 128.0
+margin_top = 126.0
 margin_right = 300.0
-margin_bottom = 132.0
+margin_bottom = 130.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HelpContainer/VBoxContainer"]
-margin_top = 140.0
+margin_top = 138.0
 margin_right = 300.0
-margin_bottom = 160.0
+margin_bottom = 159.0
 alignment = 1
 
 [node name="PlayButton" type="Button" parent="HelpContainer/VBoxContainer/HBoxContainer"]
-margin_left = 119.0
-margin_right = 181.0
-margin_bottom = 20.0
+margin_left = 123.0
+margin_right = 176.0
+margin_bottom = 21.0
 mouse_default_cursor_shape = 2
 text = "Play"
 
