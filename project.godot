@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Skeletons ate my Plants"
+config/name="Skeletons ate my plants"
 run/main_scene="res://map/main.tscn"
 boot_splash/image="res://ui/textures/splash.png"
 boot_splash/use_filter=false
