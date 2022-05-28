@@ -33,4 +33,4 @@ Now you have to destroy them with the help of your trusty watering can and regro
 
 ### Fonts
 
-- [Press Start 2P](https://www.dafont.com/press-start-2p.font)
+- [PixelInterface](https://github.com/rakkarage/PixelInterface)

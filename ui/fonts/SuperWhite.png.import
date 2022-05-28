@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/SuperWhite.png-3a70f2b1b6e6d0e38c81afeb46b5c725.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://ui/fonts/SuperWhite.png"
+dest_files=[ "res://.import/SuperWhite.png-3a70f2b1b6e6d0e38c81afeb46b5c725.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
