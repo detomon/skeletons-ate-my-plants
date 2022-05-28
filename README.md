@@ -34,4 +34,8 @@ Now you have to destroy them with the help of your trusty watering can and regro
 ### Fonts
 
 - [PixelInterface](https://github.com/rakkarage/PixelInterface)
- 
+
+## TODOs and Issues
+
+- Minor issue: On the first shot after respawning, the weapon does sometimes not correctly return to player
+- Softlock: No end sequence is played when game is paused on last planting animation
