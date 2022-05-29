@@ -8,7 +8,7 @@ export var stage_name: = "Stage"
 
 onready var player: Node2D = $TileMap/Player
 onready var player_start: Node2D = $TileMap/PlayerStart
-onready var map: Node2D = $TileMap
+onready var map: TileMap = $TileMap
 
 var pots_count: = 0
 var plants_count: = 0
@@ -26,7 +26,7 @@ func _count_pots() -> int:
 	return count
 
 func get_used_rect() -> Rect2:
-	var rect: Rect2 = map.get_used_rect()
+	var rect: = map.get_used_rect()
 	return Rect2(rect.position * map.cell_size, rect.size * map.cell_size)
 
 func _on_player_collect(parts_count: int) -> void:
