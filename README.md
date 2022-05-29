@@ -2,6 +2,8 @@
 
 *A game for the [GameDev.tv Game Jam 2022](https://itch.io/jam/gamedevtv-jam-20229).*
 
+**Play it at [itch.io](https://detomon.itch.io/skeletons-ate-my-plants).**
+
 ## Story
 
 **Skeletons ate your plants!**
