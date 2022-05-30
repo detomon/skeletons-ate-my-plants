@@ -58,7 +58,9 @@ func _is_player_visible() -> bool:
 	if not ray_cast.is_colliding():
 		return false
 
-	return ray_cast.get_collider().is_in_group("player")
+	var collider: = ray_cast.get_collider()
+
+	return collider.is_in_group("player") and not collider.is_death()
 
 func _throw() -> void:
 	if not _is_player_visible():
