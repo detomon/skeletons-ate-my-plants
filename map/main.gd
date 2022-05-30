@@ -96,7 +96,7 @@ func finish_stage() -> void:
 	yield(victory_music, "finished")
 	yield(get_tree().create_timer(1.0), "timeout")
 
-	load_next_map()
+	load_next_stage()
 
 func reset() -> void:
 	menu.parts_count = 0
@@ -130,8 +130,7 @@ func fade_out(node: CanvasItem) -> void:
 	yield(tween, "tween_completed")
 	node.visible = false
 
-# TODO: implement loading next stage
-func load_next_map() -> void:
+func load_next_stage() -> void:
 	yield(unload_stage(), "completed")
 	yield(get_tree().create_timer(1.0), "timeout")
 
@@ -164,7 +163,7 @@ func _on_intro_play() -> void:
 		return
 
 	yield(fade_out(intro), "completed")
-	load_next_map()
+	load_next_stage()
 
 func _on_outro_play() -> void:
 	if tween.is_active():
@@ -172,4 +171,4 @@ func _on_outro_play() -> void:
 
 	yield(fade_out(outro), "completed")
 	scene_index = 0
-	load_next_map()
+	load_next_stage()
